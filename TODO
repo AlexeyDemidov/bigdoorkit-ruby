@@ -1,0 +1,5 @@
+fill generated templates
+write tests for simple procedural client 
+choose HTTP REST client from (rest-client, httparty, nestful)
+find library for mocking HTTP requests
+  http://rubygems.org/gems/fakeweb
