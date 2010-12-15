@@ -1,2 +1,5 @@
 syntax: glob
 .*.swp
+tmp
+coverage
+.source_index

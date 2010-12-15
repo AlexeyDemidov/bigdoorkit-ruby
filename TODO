@@ -1,5 +1,28 @@
+setup environment 
+    install RVM ?
+    tools 
+      metric_fu
+        reek
+        flog
+        roodi
+        flay
+        saikuro
+        nitpick
+        heckle
+      rcov
+      autotest
+
+Dependencies      
+    choose HTTP REST client from (rest-client, httparty, nestful)
+
+Test
+    refresh with rspec book
+    write tests for simple procedural client 
+    find library for mocking HTTP requests
+      http://rubygems.org/gems/fakeweb
+
+Implement      
+
 fill generated templates
-write tests for simple procedural client 
-choose HTTP REST client from (rest-client, httparty, nestful)
-find library for mocking HTTP requests
-  http://rubygems.org/gems/fakeweb
+
+
