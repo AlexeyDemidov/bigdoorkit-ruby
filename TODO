@@ -9,20 +9,20 @@ setup environment
         saikuro
         nitpick
         heckle
-      rcov
       autotest
 
-Dependencies      
-    choose HTTP REST client from (rest-client, httparty, nestful)
-
 Test
-    refresh with rspec book
     write tests for simple procedural client 
+    write scenario with low-level calls (get/put/post/delete)
+      currency
     find library for mocking HTTP requests
       http://rubygems.org/gems/fakeweb
 
 Implement      
+   put
+   post 
+   delete
+   generate_token
+   do_request response object (HTTP status etc.)
 
 fill generated templates
-
-
