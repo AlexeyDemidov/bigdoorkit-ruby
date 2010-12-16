@@ -115,6 +115,7 @@ module BigDoor
                 
                     # FIXME check for exception    
                     response = subject.delete('/currency/%s' % currency_id )
+                    # check that zero objects left
                 end
             end
 

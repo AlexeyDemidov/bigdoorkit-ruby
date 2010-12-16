@@ -16,6 +16,7 @@ check for limit 10 items returned by call
 Test
     add check for token generation
     write tests for simple procedural client 
+    check for exception handling
     write scenario with low-level calls (get/put/post/delete)
       currency
     find library for mocking HTTP requests

@@ -67,7 +67,9 @@ module BigDoor
             if is_postish && !payload.key?('token')
                 payload['token'] = self.generate_token
             end
-            if method =~ /^DELETE$/i && !params.key?('delete_token') 
+            pp method
+            pp params
+            if method == :delete && !params.key?('delete_token') 
                 params['delete_token'] = self.generate_token
             end
 
@@ -89,7 +91,7 @@ module BigDoor
         end
 
         def delete( url, params = nil)
-            do_request( :get, url, params)
+            do_request( :delete, url, params)
         end
 
         def do_request( method, end_point, params = nil, payload = nil )
@@ -113,10 +115,12 @@ module BigDoor
             puts '----'
 
             response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
-            pp response
-            decoded_response = JSON.parse( response )
-            pp decoded_response[0]
-            decoded_response[0]
+            #pp response
+            if response && !response.empty?
+                decoded_response = JSON.parse( response )
+                pp decoded_response[0]
+                decoded_response[0]
+            end
         rescue RestClient::Exception => e
             pp e.http_body
         end
