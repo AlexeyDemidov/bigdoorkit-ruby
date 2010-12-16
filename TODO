@@ -25,5 +25,6 @@ Test
 Implement      
    logger
    do_request response object (HTTP status etc.)
+   Resource
 
 fill generated templates
