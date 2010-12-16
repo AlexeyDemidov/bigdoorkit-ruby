@@ -26,10 +26,9 @@ module BigDoor
                 subject.app_host.should == 'http://api.bigdoor.com'
             end
             
-
             describe "#get" do 
-                it { should respond_to(:get).with(2).arguments }
                 it { should respond_to(:get).with(1).arguments }
+                it { should respond_to(:get).with(2).arguments }
                 it "should return 9 predefined currency_type objects" do
                     response = subject.get('/currency_type')
                     response.should be
@@ -40,12 +39,83 @@ module BigDoor
 
             describe "#post" do
                 it { should respond_to(:post).with(3).arguments }
+                it "should create currency object" do
+                    currency = {
+                        'pub_title'            => 'Coins ',
+                        'pub_description'      => 'an example of the Purchase currency type',
+                        'end_user_title'       => 'Coins',
+                        'end_user_description' => 'can only be purchased',
+                        'currency_type_id'     => '1',
+                        'currency_type_title'  => 'Purchase',
+                        'exchange_rate'        => 900.00,
+                        'relative_weight'      => 2,
+                    }
+                    response = subject.post('/currency', { 'format' => 'json' }, currency )
+                    response.should be
+                    response.should be_a_instance_of( Hash )
+                    response['pub_title'].should == 'Coins '
+                    response['pub_description'].should == 'an example of the Purchase currency type'
+                    response['id'].should be
+                    currency_id = response['id'].to_s
+                    currency_id.should =~ /[0-9]+/
+
+                    subject.delete('/currency/%s' % currency_id )
+                end
             end
             describe "#put" do
                 it { should respond_to(:put).with(3).arguments }
+                it "should create and update currency object" do
+                    currency = {
+                        'pub_title'            => 'Coins ',
+                        'pub_description'      => 'an example of the Purchase currency type',
+                        'end_user_title'       => 'Coins',
+                        'end_user_description' => 'can only be purchased',
+                        'currency_type_id'     => '1',
+                        'currency_type_title'  => 'Purchase',
+                        'exchange_rate'        => 900.00,
+                        'relative_weight'      => 2,
+                    }
+                    response = subject.post('/currency', { 'format' => 'json' }, currency )
+                    response.should be
+                    response.should be_a_instance_of( Hash )
+                    response['id'].should be
+                    currency_id = response['id'].to_s
+                    currency_id.should =~ /[0-9]+/
+
+                    currency['pub_title'] = 'Coins'
+                    currency.delete('token')
+                    response = subject.put('/currency/%s' % currency_id, { 'format' => 'json' }, currency )
+                    response.should be
+                    response.should be_a_instance_of( Hash )
+                    response['pub_title'].should == 'Coins'
+                    response['pub_description'].should == 'an example of the Purchase currency type'
+                    subject.delete('/currency/%s' % currency_id )
+                end
             end
             describe "#delete" do
                 it { should respond_to(:delete).with(2).arguments }
+                it "should create and delete currency object" do
+                    currency = {
+                        'pub_title'            => 'Coins ',
+                        'pub_description'      => 'an example of the Purchase currency type',
+                        'end_user_title'       => 'Coins',
+                        'end_user_description' => 'can only be purchased',
+                        'currency_type_id'     => '1',
+                        'currency_type_title'  => 'Purchase',
+                        'exchange_rate'        => 900.00,
+                        'relative_weight'      => 2,
+                    }
+                    response = subject.post('/currency', { 'format' => 'json' }, currency )
+                    response.should be
+                    response.should be_a_instance_of( Hash )
+                    response['id'].should be
+                    currency_id = response['id'].to_s
+                    currency_id.should =~ /[0-9]+/
+
+                
+                    # FIXME check for exception    
+                    response = subject.delete('/currency/%s' % currency_id )
+                end
             end
 
         end

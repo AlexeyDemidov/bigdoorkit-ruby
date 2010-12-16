@@ -11,7 +11,10 @@ setup environment
         heckle
       autotest
 
+check for limit 10 items returned by call      
+
 Test
+    add check for token generation
     write tests for simple procedural client 
     write scenario with low-level calls (get/put/post/delete)
       currency
@@ -19,10 +22,7 @@ Test
       http://rubygems.org/gems/fakeweb
 
 Implement      
-   put
-   post 
-   delete
-   generate_token
+   logger
    do_request response object (HTTP status etc.)
 
 fill generated templates

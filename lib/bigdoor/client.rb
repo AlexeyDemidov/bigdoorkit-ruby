@@ -2,6 +2,7 @@ require 'restclient'
 require 'addressable/uri'
 require 'json'
 require 'digest/sha1'
+require 'uuidtools'
 
 module BigDoor
 
@@ -21,7 +22,7 @@ module BigDoor
         end
 
         def flatten_params( params )
-            raise ArgumentError unless params
+            raise ArgumentError.new('params should be defined') unless params
             result = ''
             keys = params.keys.sort{|a,b| a <=> b}
             keys.each do |k| 
@@ -29,6 +30,7 @@ module BigDoor
                 next if k == 'format'
                 result += "#{k}#{params[k]}"
             end
+            pp result
             result
         end
 
@@ -38,16 +40,20 @@ module BigDoor
             signature += flatten_params( payload ) if payload 
             signature += @app_secret
 
-            #pp signature
+            pp signature
 
             Digest::SHA256.hexdigest(signature)
+        end
+
+        def generate_token
+            UUIDTools::UUID.random_create.hexdigest
         end
 
         def sign_request( method, url, params, payload )
             params = {} unless params
             payload = {} unless payload
 
-            is_postish = method =~ /^(POST)|(PUT)$/i;
+            is_postish = [:post, :put].include?(method)
             if is_postish && payload.key?('time')
                 params['time'] = payload['time']
             end
@@ -75,19 +81,25 @@ module BigDoor
         end
 
         def post( url, params, payload )
+            do_request( :post, url, params, payload)
         end
 
-        def put( url, params, payload )
+        def put( url, params, payload  )
+            do_request( :put, url, params, payload)
         end
 
-        def delete( url, params )
+        def delete( url, params = nil)
+            do_request( :get, url, params)
         end
 
         def do_request( method, end_point, params = nil, payload = nil )
             headers = {
                 'User-Agent' => "BigDoorKit-Ruby/#{VERSION}",
-                'Content-Type' => 'application/x-www-form-urlencoded'
             }
+            
+            if [:post, :put].include?(method)
+                headers['Content-Type'] = 'application/x-www-form-urlencoded'
+            end
 
             params, payload = sign_request( method, @base_url + end_point, params, payload )
 
@@ -101,9 +113,12 @@ module BigDoor
             puts '----'
 
             response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
+            pp response
             decoded_response = JSON.parse( response )
             pp decoded_response[0]
             decoded_response[0]
+        rescue RestClient::Exception => e
+            pp e.http_body
         end
     end
 end
