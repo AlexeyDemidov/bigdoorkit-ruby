@@ -5,7 +5,9 @@ require 'digest/sha1'
 require 'uuidtools'
 
 module BigDoor
-
+    #
+    # This module provides interface to BigDoor public REST API
+    #
     DEFAULT_APP_HOST = 'http://api.bigdoor.com'
 
     class Client
@@ -24,11 +26,11 @@ module BigDoor
         def flatten_params( params )
             raise ArgumentError.new('params should be defined') unless params
             result = ''
-            keys = params.keys.sort{|a,b| a <=> b}
-            keys.each do |k| 
-                next if k == 'sig' 
-                next if k == 'format'
-                result += "#{k}#{params[k]}"
+            keys = params.keys.sort{|a,b| a.to_s <=> b.to_s}
+            keys.each do |key| 
+                next if key == 'sig' 
+                next if key == 'format'
+                result += "#{key}#{params[key]}"
             end
             pp result
             result
@@ -49,11 +51,14 @@ module BigDoor
             UUIDTools::UUID.random_create.hexdigest
         end
 
-        def sign_request( method, url, params, payload )
+        def add_required_params( method, params, payload )
+            raise ArgumentError.new('unkown method') unless [:get, :put, :post, :delete].include?(method)
+
             params = {} unless params
             payload = {} unless payload
-
+            
             is_postish = [:post, :put].include?(method)
+
             if is_postish && payload.key?('time')
                 params['time'] = payload['time']
             end
@@ -67,11 +72,17 @@ module BigDoor
             if is_postish && !payload.key?('token')
                 payload['token'] = self.generate_token
             end
-            pp method
-            pp params
+            
             if method == :delete && !params.key?('delete_token') 
                 params['delete_token'] = self.generate_token
             end
+
+            [params, payload]
+        end
+
+        def sign_request( method, url, params, payload )
+
+            params, payload = add_required_params( method, params, payload )
 
             params['sig'] = self.generate_signature( url, params, payload )
             
@@ -121,8 +132,8 @@ module BigDoor
                 pp decoded_response[0]
                 decoded_response[0]
             end
-        rescue RestClient::Exception => e
-            pp e.http_body
+        rescue RestClient::Exception => ex
+            pp ex.http_body
         end
     end
 end
