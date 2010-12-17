@@ -9,18 +9,55 @@ module BigDoor
     
     class Resource < OpenStruct
         def initialize( hash = {}) 
+            $log.debug( "Resource init with hash = #{hash.inspect}")
             default_values = {
                 'pub_title' => '',
                 'pub_description' => '',
                 'end_user_title' => '',
                 'end_user_description' => '',
             }
-            default_values.merge( hash )
+            default_values.merge!( hash )
+            $log.debug( "Resource default_values = #{default_values.inspect}")
+
+            if default_values.key?('id')
+                default_values['resource_id'] = default_values['id']
+                default_values.delete('id')
+            end
             super( default_values )
         end
 
+        def self.end_point_from_classname( name )
+            $log.debug("end_point_from_classname called with name = #{name}")
+            if name =~ /BigDoor::(.+)$/
+                resource_name = $1
+
+                $log.debug("resource_name = #{resource_name}")
+
+                resource_name.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2');
+                resource_name.gsub!(/([a-z\d])([A-Z])/, '\1_\2');
+                resource_name.downcase!
+
+                $log.debug("resource_name = #{resource_name}")
+            end
+            "/#{resource_name}"
+        end
+
         def end_point
-            '/currency'
+            $log.debug("ins class = #{self.class.name}")
+            $log.debug("self.name = #{self.name}")
+
+            Resource.end_point_from_classname( self.class.name )
+        end
+        
+        def self.end_point
+            $log.debug("cls class = #{self.class.name}")
+            $log.debug("self.name = #{self.name}")
+
+            end_point_from_classname( self.name )
+        end
+
+        def get_id 
+            self.resource_id
         end
 
         def instance_to_payload
@@ -42,13 +79,24 @@ module BigDoor
 
         def save( client )
             uri = end_point
+            $log.debug( "end_point = #{uri}")
             payload = instance_to_payload
-            # FIXME choose PUT if id defined
-            response = client.post( uri, { 'format' => 'json' }, payload )
+            if payload.key?(:resource_id)
+                $log.debug('PUT');
+                response = client.put( sprintf("%s/%s", uri, self.get_id ), { 'format' => 'json' }, payload )
+            else
+                $log.debug('POST');
+                response = client.post( uri, { 'format' => 'json' }, payload )
+            end
             response_to_instance( response )
         end
 
-        def load( client, id = nil)
+        def load( client, id = nil) 
+            id = self.get_id unless id
+            raise ArgumentError.new('Pass id as param or set resource_id for object ') unless id
+            $log.debug('GET');
+            response = client.get( sprintf("%s/%s", end_point, id), { 'format' => 'json' })
+            response_to_instance( response )
         end
 
         def delete( client, id = nil)
@@ -58,8 +106,16 @@ module BigDoor
         end
 
         def self.all( client )
-            uri = '/currency'
-            client.get( uri, { 'format' => 'json' } )
+            uri = end_point
+            $log.debug( "end_point = #{uri}")
+            response = client.get( uri, { 'format' => 'json' } )
+            $log.debug( "response to all = #{response}")
+            allobj = response.map{ |obj| 
+                $log.debug("obj = #{obj.inspect}")
+                self.new(obj) 
+            }
+            $log.debug( "allobj = #{allobj.inspect}")
+            allobj
         end
     end
 end

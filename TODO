@@ -1,14 +1,8 @@
 setup environment 
     install RVM ?
     tools 
-      metric_fu
-        reek
-        flog
-        roodi
-        flay
-        saikuro
-        nitpick
-        heckle
+      nitpick
+      heckle
       autotest
 
 check for limit 10 items returned by call      
@@ -21,9 +15,12 @@ Test
       currency
     find library for mocking HTTP requests
       http://rubygems.org/gems/fakeweb
+    cucumber  
 
 Implement      
    do_request response object (HTTP status etc.)
    Resource
+     all
+   extract scenario to test resource object
 
 fill generated templates
