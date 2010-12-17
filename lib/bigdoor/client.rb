@@ -32,7 +32,7 @@ module BigDoor
                 next if key == 'format'
                 result += "#{key}#{params[key]}"
             end
-            pp result
+            $log.debug(sprintf "flatten_params = %s", result )
             result
         end
 
@@ -42,7 +42,7 @@ module BigDoor
             signature += flatten_params( payload ) if payload 
             signature += @app_secret
 
-            pp signature
+            $log.debug(sprintf "signature = %s", signature )
 
             Digest::SHA256.hexdigest(signature)
         end
@@ -118,22 +118,20 @@ module BigDoor
 
             url = Addressable::URI.parse( @app_host + @base_url + end_point )
             url.query_values = params
-            
-            puts '----'
-            pp url.to_s
-            pp params
-            pp payload
-            puts '----'
 
+            $log.debug( sprintf 'method url = %s %s', method, url )
+            $log.debug( sprintf 'params = %s', params.inspect )
+            $log.debug( sprintf 'payload = %s', payload.inspect )
+            
             response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
             #pp response
             if response && !response.empty?
                 decoded_response = JSON.parse( response )
-                pp decoded_response[0]
+                $log.debug( sprintf 'decoded_response = %s', decoded_response.inspect )
                 decoded_response[0]
             end
         rescue RestClient::Exception => ex
-            pp ex.http_body
+            $log.debug(ex.http_body)
         end
     end
 end

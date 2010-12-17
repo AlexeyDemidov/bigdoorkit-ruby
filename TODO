@@ -23,7 +23,6 @@ Test
       http://rubygems.org/gems/fakeweb
 
 Implement      
-   logger
    do_request response object (HTTP status etc.)
    Resource
 

@@ -5,6 +5,9 @@ require 'bigdoor/client'
 require 'bigdoor/resource'  
 require 'bigdoor/currency'  
 
+$log = Logger.new('log.txt')
+$log.level = Logger::DEBUG
+
 module BigDoor
   VERSION = '0.0.1'
 end
