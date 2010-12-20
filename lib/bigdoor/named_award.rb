@@ -11,6 +11,7 @@ module BigDoor
                 'parent_id'                          => nil,
                 'named_award_collection_id'          => nil,
                 'relative_weight'                    => 0,
+                'collection_uri'                     => '',
                 'urls'                               => [],
             }
             default_values.merge!( hash )

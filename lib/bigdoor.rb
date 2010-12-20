@@ -6,6 +6,8 @@ require 'bigdoor/resource'
 require 'bigdoor/currency'  
 require 'bigdoor/currency_type'
 require 'bigdoor/named_award'
+require 'bigdoor/named_good'
+require 'bigdoor/named_level'
 
 $log = Logger.new('log.txt')
 $log.level = Logger::DEBUG
