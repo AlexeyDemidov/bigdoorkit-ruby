@@ -5,6 +5,7 @@ require 'bigdoor/client'
 require 'bigdoor/resource'  
 require 'bigdoor/currency'  
 require 'bigdoor/currency_type'
+require 'bigdoor/named_award'
 
 $log = Logger.new('log.txt')
 $log.level = Logger::DEBUG
