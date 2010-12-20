@@ -4,6 +4,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'bigdoor/client'  
 require 'bigdoor/resource'  
 require 'bigdoor/currency'  
+require 'bigdoor/currency_type'
 
 $log = Logger.new('log.txt')
 $log.level = Logger::DEBUG
