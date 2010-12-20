@@ -22,15 +22,17 @@ Implement
    extract scenario to test resource object
 
    Implement Objects
-    + Attribute
-     Award
+   + Award
      CurrencyBalance
-    + Currency
-    + CurrencyType
-    + EndUser
      Good
      Leaderboard
      Level
+     Profile
+
+   + Attribute
+   + Currency
+   + CurrencyType
+   + EndUser
    + NamedAwardCollection
    + NamedAward
    + NamedGoodCollection
@@ -39,7 +41,6 @@ Implement
    + NamedLevel
    + NamedTransactionGroup
    + NamedTransaction
-     Profile
    + URL
 
 

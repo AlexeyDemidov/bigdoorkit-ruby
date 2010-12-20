@@ -43,17 +43,30 @@ module BigDoor
         end
 
         def end_point
-            $log.debug("ins class = #{self.class.name}")
+            class_name = self.class.name
+            $log.debug("ins class = #{class_name}")
             $log.debug("self.name = #{self.name}")
 
-            Resource.end_point_from_classname( self.class.name )
+            ep = Resource.end_point_from_classname( class_name )
+            $log.debug("ep = #{ep}")
+            if parent_end_point
+                $log.debug("parent_end_point = #{parent_end_point}")
+                $log.debug("parent_id_attr = #{parent_id_attr}")
+                $log.debug("parent_id_attr value = #{self.instance_eval("self.#{parent_id_attr}")}")
+                ep = sprintf "%s/%s/%s", 
+                    parent_end_point,
+                    self.instance_eval("self.#{parent_id_attr}")
+                    end_point_from_class_name( class_name )
+            end
+            ep
         end
         
         def self.end_point
-            $log.debug("cls class = #{self.class.name}")
-            $log.debug("self.name = #{self.name}")
+            class_name = self.name
+            $log.debug("cls class = #{class_name}")
+            $log.debug("self.name = #{class_name}")
 
-            end_point_from_classname( self.name )
+            end_point_from_classname( class_name )
         end
 
         def get_id 

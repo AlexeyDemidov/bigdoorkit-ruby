@@ -5,6 +5,7 @@ require 'bigdoor/client'
 require 'bigdoor/resource'  
 
 require 'bigdoor/attribute'
+require 'bigdoor/award'
 require 'bigdoor/currency'  
 require 'bigdoor/currency_type'
 require 'bigdoor/end_user'
