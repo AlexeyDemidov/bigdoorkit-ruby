@@ -9,7 +9,7 @@ module BigDoor
             default_values = {
                 'read_only'       => 0,
                 'end_user_login'  => nil,
-                'named_award__id' => nil,
+                'named_award_id'  => nil,
             }
             default_values.merge!( hash )
             $log.debug( "Award default_values = #{default_values.inspect}")
