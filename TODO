@@ -22,25 +22,25 @@ Implement
    extract scenario to test resource object
 
    Implement Objects
-     Attribute
+    + Attribute
      Award
      CurrencyBalance
-     Currency
-     CurrencyType
-     EndUser
+    + Currency
+    + CurrencyType
+    + EndUser
      Good
      Leaderboard
      Level
-     NamedAwardCollection
-     NamedAward
-     NamedGoodCollection
-     NamedGood
-     NamedLevelCollection
-     NamedLevel
-     NamedTransactionGroup
-     NamedTransaction
+   + NamedAwardCollection
+   + NamedAward
+   + NamedGoodCollection
+   + NamedGood
+   + NamedLevelCollection
+   + NamedLevel
+   + NamedTransactionGroup
+   + NamedTransaction
      Profile
-     URL
+   + URL
 
 
 fill generated templates
