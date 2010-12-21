@@ -7,12 +7,8 @@ module BigDoor
         def initialize( hash = {} ) 
             $log.debug( "NamedAward init with hash = #{hash.inspect}")
             default_values = {
-                'read_only'                          => 1,
-                'parent_id'                          => nil,
                 'named_award_collection_id'          => nil,
                 'relative_weight'                    => 0,
-                'collection_uri'                     => '',
-                'urls'                               => [],
             }
             default_values.merge!( hash )
             $log.debug( "NamedAward default_values = #{default_values.inspect}")
