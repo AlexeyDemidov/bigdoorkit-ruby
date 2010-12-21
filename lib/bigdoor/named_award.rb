@@ -18,5 +18,13 @@ module BigDoor
             $log.debug( "NamedAward default_values = #{default_values.inspect}")
             super( default_values )
         end
+
+        def parent_end_point 
+            'named_award_collection'
+        end
+
+        def parent_id_attr
+            'named_award_collection_id'
+        end
     end
 end
