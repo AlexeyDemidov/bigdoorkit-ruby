@@ -1,10 +1,5 @@
 require 'spec_helper'
 
-FAKE_APP_KEY    = '28d3da80bf36fad415ab57b3130c6cb6'
-FAKE_APP_SECRET = 'B66F956ED83AE218612CB0FBAC2EF01C'
-TEST_APP_KEY    = ENV['BIGDOOR_API_KEY']    || FAKE_APP_KEY
-TEST_APP_SECRET = ENV['BIGDOOR_API_SECRET'] || FAKE_APP_SECRET
-
 module BigDoor 
     describe NamedAward do
         before(:each) do

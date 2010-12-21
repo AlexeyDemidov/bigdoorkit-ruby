@@ -11,9 +11,9 @@ module BigDoor
         def initialize( hash = {}) 
             $log.debug( "Resource init with hash = #{hash.inspect}")
             default_values = {
-                'pub_title' => '',
-                'pub_description' => '',
-                'end_user_title' => '',
+                'pub_title'            => '',
+                'pub_description'      => '',
+                'end_user_title'       => '',
                 'end_user_description' => '',
             }
             default_values.merge!( hash )
@@ -27,6 +27,7 @@ module BigDoor
         end
 
         def self.end_point_from_classname( name )
+            # FIXME should fail if name = Resource
             $log.debug("end_point_from_classname called with name = #{name}")
             if name =~ /BigDoor::(.+)$/
                 resource_name = $1
@@ -35,9 +36,12 @@ module BigDoor
 
                 resource_name.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2');
                 resource_name.gsub!(/([a-z\d])([A-Z])/, '\1_\2');
+                # FIXME if no match
                 resource_name.downcase!
 
                 $log.debug("resource_name = #{resource_name}")
+            else
+                # FIXME if no match
             end
             "/#{resource_name}"
         end
@@ -53,6 +57,8 @@ module BigDoor
                 $log.debug("parent_end_point = #{parent_end_point}")
                 $log.debug("parent_id_attr = #{parent_id_attr}")
                 $log.debug("parent_id_attr value = #{self.instance_eval("self.#{parent_id_attr}")}")
+                # FIXME if parent_id_attr empty
+                # FIXME if no self.#{parent_id_attr}
                 ep = sprintf "%s/%s/%s", 
                     parent_end_point,
                     self.instance_eval("self.#{parent_id_attr}")
@@ -113,7 +119,9 @@ module BigDoor
         end
 
         def delete( client, id = nil)
+            # FIXME if id defined - should use class method
             id = self.resource_id unless id
+            # FIXME if no id defined
             client.delete( (sprintf "%s/%s", end_point, id), { 'format' => 'json' })
             self.resource_id = nil
         end
