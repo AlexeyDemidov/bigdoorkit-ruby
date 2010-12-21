@@ -114,9 +114,9 @@ module BigDoor
                 headers['Content-Type'] = 'application/x-www-form-urlencoded'
             end
 
-            params, payload = sign_request( method, @base_url + end_point, params, payload )
+            params, payload = sign_request( method, @base_url + '/' + end_point, params, payload )
 
-            url = Addressable::URI.parse( @app_host + @base_url + end_point )
+            url = Addressable::URI.parse( @app_host + @base_url + '/' + end_point )
             url.query_values = params
 
             $log.debug( sprintf 'method url = %s %s', method, url )
@@ -131,7 +131,7 @@ module BigDoor
                 decoded_response[0]
             end
         rescue RestClient::Exception => ex
-            $log.debug(ex.http_body)
+            $log.debug(sprintf 'Error response body: %s', ex.http_body)
         end
     end
 end

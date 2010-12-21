@@ -25,7 +25,7 @@ module BigDoor
                 it { should respond_to(:get).with(1).arguments }
                 it { should respond_to(:get).with(2).arguments }
                 it "should return 9 predefined currency_type objects" do
-                    response = subject.get('/currency_type')
+                    response = subject.get('currency_type')
                     response.should be
                     response.should be_a_instance_of( Array )
                     response.length.should == 9
@@ -45,7 +45,7 @@ module BigDoor
                         'exchange_rate'        => 900.00,
                         'relative_weight'      => 2,
                     }
-                    response = subject.post('/currency', { 'format' => 'json' }, currency )
+                    response = subject.post('currency', { 'format' => 'json' }, currency )
                     response.should be
                     response.should be_a_instance_of( Hash )
                     response['pub_title'].should == 'Coins '
@@ -54,7 +54,7 @@ module BigDoor
                     currency_id = response['id'].to_s
                     currency_id.should =~ /[0-9]+/
 
-                    subject.delete('/currency/%s' % currency_id )
+                    subject.delete('currency/%s' % currency_id )
                 end
             end
             describe "#put" do
@@ -70,7 +70,7 @@ module BigDoor
                         'exchange_rate'        => 900.00,
                         'relative_weight'      => 2,
                     }
-                    response = subject.post('/currency', { 'format' => 'json' }, currency )
+                    response = subject.post('currency', { 'format' => 'json' }, currency )
                     response.should be
                     response.should be_a_instance_of( Hash )
                     response['id'].should be
@@ -79,12 +79,12 @@ module BigDoor
 
                     currency['pub_title'] = 'Coins'
                     currency.delete('token')
-                    response = subject.put('/currency/%s' % currency_id, { 'format' => 'json' }, currency )
+                    response = subject.put('currency/%s' % currency_id, { 'format' => 'json' }, currency )
                     response.should be
                     response.should be_a_instance_of( Hash )
                     response['pub_title'].should == 'Coins'
                     response['pub_description'].should == 'an example of the Purchase currency type'
-                    subject.delete('/currency/%s' % currency_id )
+                    subject.delete('currency/%s' % currency_id )
                 end
             end
             describe "#delete" do
@@ -100,7 +100,7 @@ module BigDoor
                         'exchange_rate'        => 900.00,
                         'relative_weight'      => 2,
                     }
-                    response = subject.post('/currency', { 'format' => 'json' }, currency )
+                    response = subject.post('currency', { 'format' => 'json' }, currency )
                     response.should be
                     response.should be_a_instance_of( Hash )
                     response['id'].should be
@@ -109,7 +109,7 @@ module BigDoor
 
                 
                     # FIXME check for exception    
-                    response = subject.delete('/currency/%s' % currency_id )
+                    response = subject.delete('currency/%s' % currency_id )
                     # check that zero objects left
                 end
             end

@@ -43,7 +43,7 @@ module BigDoor
             else
                 # FIXME if no match
             end
-            "/#{resource_name}"
+            "#{resource_name}"
         end
 
         def end_point
@@ -61,8 +61,8 @@ module BigDoor
                 # FIXME if no self.#{parent_id_attr}
                 ep = sprintf "%s/%s/%s", 
                     parent_end_point,
-                    self.instance_eval("self.#{parent_id_attr}")
-                    end_point_from_class_name( class_name )
+                    self.instance_eval("self.#{parent_id_attr}"),
+                    Resource.end_point_from_classname( class_name )
             end
             ep
         end
@@ -105,7 +105,7 @@ module BigDoor
                 response = client.put( sprintf("%s/%s", uri, self.get_id ), { 'format' => 'json' }, payload )
             else
                 $log.debug('POST');
-                response = client.post( uri, { 'format' => 'json' }, payload )
+                response = client.post( "#{uri}", { 'format' => 'json' }, payload )
             end
             response_to_instance( response )
         end
