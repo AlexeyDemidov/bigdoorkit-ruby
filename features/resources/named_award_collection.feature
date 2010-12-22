@@ -11,25 +11,27 @@ Feature: named_award_collection API endpoint
 
     Scenario: create a new NamedAwardCollection
         Given low-level client
-        When I create a new NamedAwardCollection
+        When I create a new NamedAwardCollection object
         Then I should get a NamedAwardCollection object
     
     Scenario: create and save a new NamedAwardCollection
         Given low-level client
-        When I create a new NamedAwardCollection
-        And set some data on it
-        And save it
+        When I create a new NamedAwardCollection object
+        And assign some NamedAwardCollection data to object
+        And save object
+        And load object
+        And save object
         Then I should get a NamedAwardCollection object
-        And it should has resource_id defined
-        And I should be able to remove it
+        And object should has resource_id defined
+        And I should be able to remove object
     
     Scenario: add NamedAward to NamedAwardCollection 
         Given low-level client
         And new empty NamedAwardCollection
-        When I create a new NamedAward
-        And set NamedAward data on it
-        And save it
+        When I create a new NamedAward object
+        And assign NamedAward data to object
+        And save object
         Then I should get a NamedAward object
-        And it should has resource_id defined
-        And I should be able to remove it
-        And NamedAwardCollection should be removed too
+        And object should has resource_id defined
+        And I should be able to remove object
+        And collection should be removed too

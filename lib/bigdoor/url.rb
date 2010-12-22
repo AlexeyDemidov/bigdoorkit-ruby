@@ -7,7 +7,6 @@ module BigDoor
         def initialize( hash = {} ) 
             $log.debug( "URL init with hash = #{hash.inspect}")
             default_values = {
-                'read_only'   => 1,
                 'friendly_id' => nil,
                 'attributes'  => [],
             }

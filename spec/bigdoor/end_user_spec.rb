@@ -15,5 +15,10 @@ module BigDoor
                 currency_types.should be_empty
             end
         end
+        context "fresh EndUser object" do 
+            subject { BigDoor::EndUser.new  }
+            it { should be }
+            it { should be_a_instance_of( BigDoor::EndUser )}
+        end
     end
 end

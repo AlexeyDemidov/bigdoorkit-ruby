@@ -8,19 +8,13 @@ module BigDoor
             $log.debug( "EndUser init with hash = #{hash.inspect}")
             default_values = {
                 'end_user_login'          => '',
-                'guid'                    => '',
-                'best_guess_name'         => '',
-                'best_guess_profile_img'  => '',
-                'award_summaries'         => [],
-                'level_summaries'         => [],
-                'sent_good_summaries'     => [],
-                'received_good_summaries' => [],
-                'currency_balances'       => [],
-                'read_only'               => 0,
             }
             default_values.merge!( hash )
             $log.debug( "EndUser default_values = #{default_values.inspect}")
             super( default_values )
+        end
+        def resource_id
+            self.end_user_login
         end
     end
 end

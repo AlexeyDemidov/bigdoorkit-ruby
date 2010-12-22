@@ -17,28 +17,19 @@ Test
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
     test coverage 
-      Collections
-        NamedAwardCollection
-        NamedAward
-        NamedGoodCollection
-        NamedGood
-        NamedLevelCollection
-        NamedLevel
+      Resource
+      Client
       URL/Attribute association
         Attribute
         URL
-      EndUser
       end_user objects
         CurrencyBalance
         Award
         Good
         Level
-        Profile
       NamedTransactionGroup
       NamedTransaction
       Leaderboard
-      Currency
-      CurrencyType
 
 Implement      
 

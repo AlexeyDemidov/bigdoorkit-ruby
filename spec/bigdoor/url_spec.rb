@@ -15,5 +15,10 @@ module BigDoor
                 currency_types.should be_empty
             end
         end
+        context "fresh URL object" do 
+            subject { BigDoor::URL.new  }
+            it { should be }
+            it { should be_a_instance_of( BigDoor::URL )}
+        end
     end
 end

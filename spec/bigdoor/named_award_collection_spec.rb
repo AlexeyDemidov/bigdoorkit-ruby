@@ -15,5 +15,10 @@ module BigDoor
                 currency_types.should be_empty
             end
         end
+        context "fresh NamedAwardCollection object" do 
+            subject { BigDoor::NamedAwardCollection.new  }
+            it { should be }
+            it { should be_a_instance_of( BigDoor::NamedAwardCollection )}
+        end
     end
 end
