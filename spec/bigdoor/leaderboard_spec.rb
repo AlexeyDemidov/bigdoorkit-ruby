@@ -9,6 +9,7 @@ module BigDoor
             subject { BigDoor::Leaderboard.new  }
             it { should be }
             it { should be_a_instance_of( BigDoor::Leaderboard )}
+            it { should respond_to(:execute).with(2).arguments}
         end
     end
 end

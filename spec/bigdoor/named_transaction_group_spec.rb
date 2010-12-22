@@ -14,6 +14,15 @@ module BigDoor
                 currency_types.should be_a_instance_of( Array )
                 currency_types.should be_empty
             end
+            subject { BigDoor::NamedTransactionGroup.new( {}  )  }
+            it { should be }
+            it { should be_instance_of BigDoor::NamedTransactionGroup}
+            it { should respond_to(:save).with(1).arguments}
+            it { should respond_to(:load).with(1).arguments}
+            it { should respond_to(:load).with(2).arguments}
+            it { should respond_to(:delete).with(1).arguments}
+            it { should respond_to(:delete).with(2).arguments}
+            it { should respond_to(:execute).with(3).arguments}
         end
     end
 end

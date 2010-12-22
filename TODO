@@ -17,7 +17,8 @@ Test
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
     test coverage 
-        amedAwardCollection
+      Collections
+        NamedAwardCollection
         NamedAward
         NamedGoodCollection
         NamedGood
@@ -26,26 +27,25 @@ Test
       URL/Attribute association
         Attribute
         URL
+      EndUser
+      end_user objects
+        CurrencyBalance
+        Award
+        Good
+        Level
+        Profile
+      NamedTransactionGroup
+      NamedTransaction
+      Leaderboard
+      Currency
+      CurrencyType
 
 Implement      
-   EndUser
-   end_user objects
-    CurrencyBalance
-    Award
-    Good
-    Level
-    Profile
-   transaction executre
-    NamedTransaction
-   leaderboard execute
-    Leaderboard
 
    do_request response object (HTTP status etc.)
    extract scenario to test resource object
 
-   Implement Objects
-   + Currency
-   + CurrencyType
-   + NamedTransactionGroup
+Documentation
+  fill generated templates
 
-fill generated templates
+Packaging

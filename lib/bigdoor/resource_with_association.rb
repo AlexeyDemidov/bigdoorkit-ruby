@@ -5,7 +5,7 @@ module BigDoor
     #
     
     class ResourceWithAssociation < Resource
-        def associate_with( client, resource )
+        def associate_with( resource, client )
             $log.debug('associate_with');
 
             uri = sprintf '%s/%s/%s/%s', 

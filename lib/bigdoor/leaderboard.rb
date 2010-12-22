@@ -14,5 +14,15 @@ module BigDoor
             $log.debug( "Leaderboard default_values = #{default_values.inspect}")
             super( default_values )
         end
+        def execute( params, client )
+            $log.debug('execute transaction');
+
+            uri = sprintf '%s/execute', end_point, 
+
+            $log.debug( sprintf 'uri = %s', uri )
+            result = client.get( uri , params )
+            $log.debug(sprintf 'result = %s', result.inspect );
+
+        end
     end
 end
