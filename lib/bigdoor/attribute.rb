@@ -3,7 +3,7 @@ module BigDoor
     # This module provides Attribute Resource object 
     # corresponding to /attribute BigDoor API end point
     #
-    class Attribute < Resource
+    class Attribute < ResourceWithAssociation
         def initialize( hash = {} ) 
             $log.debug( "Attribute init with hash = #{hash.inspect}")
             default_values = {

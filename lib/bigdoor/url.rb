@@ -3,7 +3,7 @@ module BigDoor
     # This module provides URL Resource object 
     # corresponding to /url BigDoor API end point
     #
-    class URL < Resource
+    class URL < ResourceWithAssociation
         def initialize( hash = {} ) 
             $log.debug( "URL init with hash = #{hash.inspect}")
             default_values = {
