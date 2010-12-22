@@ -16,17 +16,16 @@ Test
       https://github.com/chrisk/fakeweb
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
-    test  
+    test coverage 
+      NamedAwardCollection
+      NamedAward
+      NamedGoodCollection
+      NamedGood
+      NamedLevelCollection
+      NamedLevel
 
 Implement      
    EndUser
-   objects with parents
-    NamedAwardCollection
-    NamedAward
-    NamedGoodCollection
-    NamedGood
-    NamedLevelCollection
-    NamedLevel
    end_user objects
     CurrencyBalance
     Award

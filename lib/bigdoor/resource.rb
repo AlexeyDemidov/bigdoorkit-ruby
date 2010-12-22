@@ -39,40 +39,19 @@ module BigDoor
                 # FIXME if no match
                 resource_name.downcase!
 
-                $log.debug("resource_name = #{resource_name}")
             else
                 # FIXME if no match
             end
-            "#{resource_name}"
+            $log.debug("resource_name = #{resource_name}")
+            resource_name
         end
 
         def end_point
-            class_name = self.class.name
-            $log.debug("ins class = #{class_name}")
-            $log.debug("self.name = #{self.name}")
-
-            ep = Resource.end_point_from_classname( class_name )
-            $log.debug("ep = #{ep}")
-            if parent_end_point
-                $log.debug("parent_end_point = #{parent_end_point}")
-                $log.debug("parent_id_attr = #{parent_id_attr}")
-                $log.debug("parent_id_attr value = #{self.instance_eval("self.#{parent_id_attr}")}")
-                # FIXME if parent_id_attr empty
-                # FIXME if no self.#{parent_id_attr}
-                ep = sprintf "%s/%s/%s", 
-                    parent_end_point,
-                    self.instance_eval("self.#{parent_id_attr}"),
-                    Resource.end_point_from_classname( class_name )
-            end
-            ep
+            Resource.end_point_from_classname( self.class.name )
         end
         
         def self.end_point
-            class_name = self.name
-            $log.debug("cls class = #{class_name}")
-            $log.debug("self.name = #{class_name}")
-
-            end_point_from_classname( class_name )
+            end_point_from_classname( self.name )
         end
 
         def get_id 
