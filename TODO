@@ -17,12 +17,15 @@ Test
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
     test coverage 
-      NamedAwardCollection
-      NamedAward
-      NamedGoodCollection
-      NamedGood
-      NamedLevelCollection
-      NamedLevel
+        amedAwardCollection
+        NamedAward
+        NamedGoodCollection
+        NamedGood
+        NamedLevelCollection
+        NamedLevel
+      URL/Attribute association
+        Attribute
+        URL
 
 Implement      
    EndUser
@@ -32,9 +35,6 @@ Implement
     Good
     Level
     Profile
-   URL/Attribute association
-    Attribute
-    URL
    transaction executre
     NamedTransaction
    leaderboard execute

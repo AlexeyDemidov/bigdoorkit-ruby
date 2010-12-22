@@ -14,6 +14,5 @@ module BigDoor
             $log.debug( "NamedAward default_values = #{default_values.inspect}")
             super( default_values )
         end
-
     end
 end

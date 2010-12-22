@@ -5,6 +5,7 @@ require 'bigdoor/client'
 require 'bigdoor/resource'
 require 'bigdoor/resource_with_association'
 require 'bigdoor/resource_with_parent'
+require 'bigdoor/resource_end_user'
 
 require 'bigdoor/attribute'
 require 'bigdoor/award'

@@ -1,10 +1,10 @@
 module BigDoor
 
     #
-    # This module provides Resource class with Parent
+    # This module provides Resource class with EndUser Parent
     #
     
-    class ResourceWithParent < Resource
+    class ResourceEndUser < Resource
         def end_point
             $log.debug("parent_end_point = #{parent_end_point}")
             $log.debug("parent_id_attr = #{parent_id_attr}")
@@ -20,12 +20,11 @@ module BigDoor
         end
 
         def parent_end_point 
-            resource_name = Resource.end_point_from_classname( self.class.name )
-            "#{resource_name}_collection"
+            'end_user'
         end
 
         def parent_id_attr
-            "#{parent_end_point}_id"
+            'end_user_login'
         end
     end
 end
