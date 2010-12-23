@@ -12,7 +12,7 @@ module BigDoor
         end
         context "Award class" do
             it "Should respond to :all" do 
-                BigDoor::Award.should respond_to(:all).with(1).arguments
+                BigDoor::Award.should respond_to(:all).with(2).arguments
             end
         end
     end

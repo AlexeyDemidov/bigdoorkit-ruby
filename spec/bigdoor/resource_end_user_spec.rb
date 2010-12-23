@@ -7,7 +7,7 @@ module BigDoor
         end
         context "ResourceEndUser class" do
             it "Should respond to :all" do 
-                BigDoor::ResourceEndUser.should respond_to(:all).with(1).arguments
+                BigDoor::ResourceEndUser.should respond_to(:all).with(2).arguments
             end
             subject { BigDoor::ResourceEndUser.new( {}  )  }
             it { should be }

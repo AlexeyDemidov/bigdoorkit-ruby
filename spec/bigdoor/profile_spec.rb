@@ -12,7 +12,7 @@ module BigDoor
         end
         context "Profile class" do
             it "Should respond to :all" do 
-                BigDoor::Profile.should respond_to(:all).with(1).arguments
+                BigDoor::Profile.should respond_to(:all).with(2).arguments
             end
         end
     end
