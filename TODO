@@ -17,10 +17,6 @@ Test
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
     test coverage 
-      features
-        Good
-        URL.associate_with
-        Attribute.associate_with
       spec
         end_user
         resource_end_user

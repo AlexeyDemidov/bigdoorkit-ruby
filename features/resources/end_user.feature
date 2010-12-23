@@ -40,7 +40,7 @@ Feature: end_user API endpoint
         And some Currency
         And some NamedTransactionGroup with some NamedTransaction
         And some NamedLevelCollection with some NamedLevel
-        When I excute NamedTransactionGroup
+        When I execute NamedTransactionGroup
         And I call it to list all "CurrencyBalance" objects from "EndUser"
         Then I should get list of all "1" "CurrencyBalance" objects
         And I should see Leaderboard
@@ -54,7 +54,7 @@ Feature: end_user API endpoint
         And some Currency
         And some NamedTransactionGroup with some NamedTransaction
         And some NamedLevelCollection with some NamedLevel
-        When I excute NamedTransactionGroup
+        When I execute NamedTransactionGroup
         And I call it to list all "Level" objects from "EndUser"
         Then I should get list of all "1" "Level" objects
         And "EndUser" object should be removed
@@ -77,8 +77,8 @@ Feature: end_user API endpoint
         And some Currency
         And some NamedGoodCollection with some NamedGood
         And some NamedTransactionGroup with some NamedTransaction with Good
-        When I excute NamedTransactionGroup
+        When I execute NamedTransactionGroup
         And I call it to list all "Good" objects from "EndUser"
-        Then I should get list of all "0" "Good" objects
+        Then I should get list of all "1" "Good" objects
         And "EndUser" object should be removed
         And Currency should be removed

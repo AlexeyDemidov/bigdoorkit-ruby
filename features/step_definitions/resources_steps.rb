@@ -124,6 +124,11 @@ When /^assign "URL" data to object$/ do
     @object.url                       = 'http://example.org'
 end
 
+When /^associate "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
+    @object.associate_with( @currency, @client)
+      
+end
+
 Given /^some NamedLevelCollection with some NamedLevel$/ do
     @nlc = BigDoor::NamedLevelCollection.new({
         'pub_title'            => 'Test Named Level Collection title',
@@ -219,6 +224,7 @@ Given /^some NamedTransactionGroup with some NamedTransaction with Good$/ do
         'end_user_description'  => 'end user description',
         'end_user_cap'          => '-1',
         'end_user_cap_interval' => '-1',
+        'has_good'              => 'true',
     })
     @ntg.save( @client )
 
@@ -227,10 +233,10 @@ Given /^some NamedTransactionGroup with some NamedTransaction with Good$/ do
         'pub_description'      => 'test description',
         'end_user_title'       => 'end user title',
         'end_user_description' => 'end user description',
-        'named_good'           => @ng.resource_id,
+        'named_good_id'           => @ng.resource_id,
         'currency_id'          => @currency.resource_id,
-        'amount'               => '150',
-        'default_amount'       => '150',
+#        'amount'               => '150',
+#        'default_amount'       => '150',
     })
     @ntwg.save( @client )
 
@@ -245,8 +251,8 @@ Given /^freshly created "([^"]*)" object with "([^"]*)" name$/ do |arg1, arg2|
     @object.save( @client )
 end
 
-When /^I excute NamedTransactionGroup$/ do
-    @ntg.execute( @username, { 'verbosity' => '6'}, @client )
+When /^I execute NamedTransactionGroup$/ do
+    @ntg.execute( @username, { 'good_receiver' => @username , 'verbosity' => '9', 'allow_negative_balance' => 'true'}, @client )
 end
 
 When /^I create and save a new "EndUser" object with "random" name$/ do

@@ -27,3 +27,15 @@ Feature: url API endpoint
         And object should has resource_id defined
         And I should be able to remove object
     
+    @remote
+    Scenario: create, save and associate a new URL
+        Given low-level client
+        And some Currency
+        When I create a new "URL" object
+        And assign "URL" data to object
+        And save object
+        And associate "URL" with "Currency"
+        Then I should get a "URL" object
+        And object should has resource_id defined
+        And I should be able to remove object
+    

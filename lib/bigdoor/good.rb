@@ -7,12 +7,14 @@ module BigDoor
         def initialize( hash = {} ) 
             $log.debug( "Good init with hash = #{hash.inspect}")
             default_values = {
-                'end_user_login'  => nil,
                 'named_good_id' => nil,
             }
             default_values.merge!( hash )
             $log.debug( "Good default_values = #{default_values.inspect}")
             super( default_values )
+        end
+        def parent_id_attr
+            'good_receiver'
         end
     end
 end
