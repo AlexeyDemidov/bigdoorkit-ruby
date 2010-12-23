@@ -1,22 +1,23 @@
+@passing
 Feature: attribute API endpoint
 
     In order to operate with attribute objects
     As object-oriented API client user
     I want to use Attribute object
 
-    @remote @wip
+    @remote
     Scenario: get list of all Attribute
         Given low-level client
         When I call it to list all "Attribute" objects
         Then I should get list of all "6" "Attribute" objects
 
-    @local @wip
+    @local 
     Scenario: create a new Attribute
         Given low-level client
         When I create a new "Attribute" object
         Then I should get a "Attribute" object
     
-    @remote @wip
+    @remote
     Scenario: create and save a new Attribute
         Given low-level client
         When I create a new "Attribute" object
