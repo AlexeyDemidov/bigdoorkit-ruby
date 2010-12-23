@@ -12,7 +12,7 @@ module BigDoor
         end
         context "Level class" do
             it "Should respond to :all" do 
-                BigDoor::Level.should respond_to(:all).with(1).arguments
+                BigDoor::Level.should respond_to(:all).with(2).arguments
             end
         end
     end

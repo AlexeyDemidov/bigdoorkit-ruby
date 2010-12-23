@@ -23,6 +23,8 @@ module BigDoor
             it { should respond_to(:delete).with(1).arguments}
             it { should respond_to(:delete).with(2).arguments}
             it { should respond_to(:execute).with(3).arguments}
+            it { should respond_to(:associate_with).with(2).arguments}
+            it { should respond_to(:associate_with).with(3).arguments}
         end
     end
 end
