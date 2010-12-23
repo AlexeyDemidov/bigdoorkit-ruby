@@ -51,6 +51,10 @@ When /^I call it to list all "(\w+)" objects$/ do |class_name|
     eval(" @list_all = BigDoor::#{class_name}.all( @client ) ")
 end
 
+When /^I call it to list all "(\w+)" objects from "EndUser"$/ do |class_name| 
+    eval(" @list_all = BigDoor::#{class_name}.all( @username, @client ) ")
+end
+
 When /^I create a new "(\w+)" object$/ do |class_name|
     eval(" @object = BigDoor::#{class_name}.new")
 end
@@ -105,7 +109,15 @@ When /^assign NamedLevel data to object$/ do
     @object.named_level_collection_id = @collection.resource_id
 end
 
-When /^I create and save a new EndUser object with random name$/ do
+When /^I create and save a new "EndUser" object with "random" name$/ do
+    @username = (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
+    @object = BigDoor::EndUser.new({
+        'end_user_login' => @username
+    }) 
+    @object.save( @client )
+end
+
+Given /^freshly created "([^"]*)" object with "([^"]*)" name$/ do |arg1, arg2|
     @username = (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
     @object = BigDoor::EndUser.new({
         'end_user_login' => @username
@@ -160,7 +172,12 @@ Then /^Currency should be removed$/ do
     @currency.delete( @client )
 end
 
-Then /^I should be able to assign Profile to EndUser$/ do
+Then /^"([^"]*)" object should be removed$/ do |arg1|
+    @object.delete( @client )
+end
+
+
+Then /^I should be able to assign "Profile" to "EndUser"$/ do
     @profile = BigDoor::Profile.new({
         'provider'      => 'publisher',
         'email'         => 'end_user@example.com',

@@ -17,16 +17,16 @@ Test
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
     test coverage 
-      Resource
-      Client
-      URL/Attribute association
-        Attribute
-        URL
       end_user objects
         CurrencyBalance
         Award
         Good
         Level
+      Resource
+      Client
+      URL/Attribute association
+        Attribute
+        URL
       NamedTransactionGroup
       NamedTransaction
       Leaderboard
