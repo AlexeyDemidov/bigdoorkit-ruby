@@ -3,7 +3,7 @@ Given /^low\-level client$/ do
       @client = BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET )
 end
 
-Given /^new empty NamedAwardCollection$/ do
+Given /^new empty "NamedAwardCollection" collection$/ do
     @collection = BigDoor::NamedAwardCollection.new
     @collection.pub_title            = 'application achievements'
     @collection.pub_description      = 'a set of achievements that the user can earn'
@@ -47,11 +47,11 @@ Given /^some Currency$/ do
     @currency.save( @client )
 end
 
-When /^I call it to list all (\w+) objects$/ do |class_name| 
+When /^I call it to list all "(\w+)" objects$/ do |class_name| 
     eval(" @list_all = BigDoor::#{class_name}.all( @client ) ")
 end
 
-When /^I create a new (\w+) object$/ do |class_name|
+When /^I create a new "(\w+)" object$/ do |class_name|
     eval(" @object = BigDoor::#{class_name}.new")
 end
 
@@ -122,7 +122,7 @@ When /^load object$/ do
       @object.load( @client )
 end
 
-Then /^I should get list of all \[(\d+)\] (\w+) objects$/ do |number, class_name|
+Then /^I should get list of all "(\d+)" "(\w+)" objects$/ do |number, class_name|
     @list_all.should be_a_instance_of( Array )
     @list_all.should have(number.to_i).items
     if number.to_i > 0
@@ -130,7 +130,7 @@ Then /^I should get list of all \[(\d+)\] (\w+) objects$/ do |number, class_name
     end
 end
 
-Then /^I should get a (\w+) object$/ do |class_name|
+Then /^I should get a "(\w+)" object$/ do |class_name|
     @object.should be_a_instance_of( eval(sprintf "BigDoor::%s", class_name) )
 end
 
