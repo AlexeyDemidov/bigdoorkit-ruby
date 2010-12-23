@@ -1,2 +1,3 @@
 wip: --tags @wip features
 local: --tags @local features
+failing: --tags @failing features
