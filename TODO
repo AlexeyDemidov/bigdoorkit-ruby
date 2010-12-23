@@ -17,19 +17,17 @@ Test
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
     test coverage 
-      end_user objects
-        CurrencyBalance
-        Award
+      features
         Good
-        Level
-      Resource
-      Client
-      URL/Attribute association
-        Attribute
-        URL
-      NamedTransactionGroup
-      NamedTransaction
-      Leaderboard
+        URL.associate_with
+        Attribute.associate_with
+      spec
+        end_user
+        resource_end_user
+        resource_with_association
+        resource_with_parent
+        named_transaction_group
+        leaderboard
 
 Implement      
 

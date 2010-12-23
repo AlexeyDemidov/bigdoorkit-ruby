@@ -5,7 +5,7 @@ module BigDoor
     #
     
     class ResourceWithAssociation < Resource
-        def associate_with( resource, client )
+        def associate_with(resource, client, payload = {})
             $log.debug('associate_with');
 
             uri = sprintf '%s/%s/%s/%s', 
@@ -15,7 +15,7 @@ module BigDoor
                 resource.resource_id
 
             $log.debug( sprintf 'uri = %s', uri )
-            result = client.post( uri , { 'format' => 'json'})
+            result = client.post( uri , { 'format' => 'json'}, payload )
             $log.debug(sprintf 'result = %s', result.inspect );
         end
     end

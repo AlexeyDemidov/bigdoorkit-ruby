@@ -117,10 +117,11 @@ module BigDoor
             params, payload = sign_request( method, @base_url + '/' + end_point, params, payload )
 
             url = Addressable::URI.parse( @app_host + @base_url + '/' + end_point )
+            $log.debug( sprintf 'url  object = %s', url.inspect )
+            $log.debug( sprintf 'params = %s', params.inspect )
             url.query_values = params
 
             $log.debug( sprintf 'method url = %s %s', method, url )
-            $log.debug( sprintf 'params = %s', params.inspect )
             $log.debug( sprintf 'payload = %s', payload.inspect )
             
             response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
