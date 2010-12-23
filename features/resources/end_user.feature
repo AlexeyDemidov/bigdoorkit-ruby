@@ -1,4 +1,3 @@
-@wip
 Feature: end_user API endpoint
 
     In order to operate with end users objects
@@ -33,3 +32,53 @@ Feature: end_user API endpoint
         When I call it to list all "CurrencyBalance" objects from "EndUser"
         Then I should get list of all "0" "CurrencyBalance" objects
         And "EndUser" object should be removed
+
+    @remote @passing
+    Scenario: Run Transaction for EndUser
+        Given low-level client
+        And freshly created "EndUser" object with "random" name
+        And some Currency
+        And some NamedTransactionGroup with some NamedTransaction
+        And some NamedLevelCollection with some NamedLevel
+        When I excute NamedTransactionGroup
+        And I call it to list all "CurrencyBalance" objects from "EndUser"
+        Then I should get list of all "1" "CurrencyBalance" objects
+        And I should see Leaderboard
+        And "EndUser" object should be removed
+        And Currency should be removed
+    
+    @remote @passing
+    Scenario: Run Transaction for EndUser with Level Up
+        Given low-level client
+        And freshly created "EndUser" object with "random" name
+        And some Currency
+        And some NamedTransactionGroup with some NamedTransaction
+        And some NamedLevelCollection with some NamedLevel
+        When I excute NamedTransactionGroup
+        And I call it to list all "Level" objects from "EndUser"
+        Then I should get list of all "1" "Level" objects
+        And "EndUser" object should be removed
+        And Currency should be removed
+    
+    @remote  @passing
+    Scenario: Assign Award to EndUser
+        Given low-level client
+        And freshly created "EndUser" object with "random" name
+        And some NamedAwardCollection with some NamedAward
+        When I assign Award to EndUser
+        And I call it to list all "Award" objects from "EndUser"
+        Then I should get list of all "1" "Award" objects
+        And "EndUser" object should be removed
+    
+    @remote @failing
+    Scenario: Run Transaction for EndUser with Good
+        Given low-level client
+        And freshly created "EndUser" object with "random" name
+        And some Currency
+        And some NamedGoodCollection with some NamedGood
+        And some NamedTransactionGroup with some NamedTransaction with Good
+        When I excute NamedTransactionGroup
+        And I call it to list all "Good" objects from "EndUser"
+        Then I should get list of all "0" "Good" objects
+        And "EndUser" object should be removed
+        And Currency should be removed

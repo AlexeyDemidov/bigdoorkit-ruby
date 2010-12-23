@@ -109,12 +109,132 @@ When /^assign NamedLevel data to object$/ do
     @object.named_level_collection_id = @collection.resource_id
 end
 
-When /^I create and save a new "EndUser" object with "random" name$/ do
-    @username = (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
-    @object = BigDoor::EndUser.new({
-        'end_user_login' => @username
-    }) 
-    @object.save( @client )
+When /^assign "Attribute" data to object$/ do
+    @object.pub_title                 = 'Attribute pub title'
+    @object.pub_description           = 'Attribute pub description'
+    @object.end_user_title            = 'Attribute end user title'
+    @object.end_user_description      = 'Attribute end user description'
+end
+
+When /^assign "URL" data to object$/ do
+    @object.pub_title                 = 'URL pub title'
+    @object.pub_description           = 'URL pub description'
+    @object.end_user_title            = 'URL end user title'
+    @object.end_user_description      = 'URL end user description'
+    @object.url                       = 'http://example.org'
+end
+
+Given /^some NamedLevelCollection with some NamedLevel$/ do
+    @nlc = BigDoor::NamedLevelCollection.new({
+        'pub_title'            => 'Test Named Level Collection title',
+        'pub_description'      => 'test named Level collection description',
+        'end_user_title'       => 'test named Level collection end user title',
+        'end_user_description' => 'test named Level collection end user description',
+        'currency_id'          => @currency.resource_id,
+    })
+    @nlc.save( @client )
+
+    @nl = BigDoor::NamedLevel.new({
+        'pub_title'                 => 'Named Level pub title',
+        'pub_description'           => 'Named Level pub description',
+        'end_user_title'            => 'Named Level end user title',
+        'end_user_description'      => 'Named Level end user description',
+        'relative_weight'           => 1,
+        'threshold'                 => 10,
+        'named_level_collection_id' => @nlc.resource_id,
+    })
+    @nl.save( @client )
+end
+
+Given /^some NamedAwardCollection with some NamedAward$/ do
+    @nac = BigDoor::NamedAwardCollection.new({
+        'pub_title'            => 'Test Named Award Collection title',
+        'pub_description'      => 'test named Award collection description',
+        'end_user_title'       => 'test named Award collection end user title',
+        'end_user_description' => 'test named Award collection end user description',
+    })
+    @nac.save( @client )
+
+    @na = BigDoor::NamedAward.new({
+        'pub_title'                 => 'Named Award pub title',
+        'pub_description'           => 'Named Award pub description',
+        'end_user_title'            => 'Named Award end user title',
+        'end_user_description'      => 'Named Award end user description',
+        'relative_weight'           => 1,
+        'named_award_collection_id' => @nac.resource_id,
+    })
+    @na.save( @client )
+end
+
+Given /^some NamedGoodCollection with some NamedGood$/ do
+    @ngc = BigDoor::NamedGoodCollection.new({
+        'pub_title'            => 'Test Named Good Collection title',
+        'pub_description'      => 'test named Good collection description',
+        'end_user_title'       => 'test named Good collection end user title',
+        'end_user_description' => 'test named Good collection end user description',
+    })
+    @ngc.save( @client )
+
+    @ng = BigDoor::NamedGood.new({
+        'pub_title'                 => 'Named Good pub title',
+        'pub_description'           => 'Named Good pub description',
+        'end_user_title'            => 'Named Good end user title',
+        'end_user_description'      => 'Named Good end user description',
+        'relative_weight'           => 1,
+        'named_good_collection_id' => @ngc.resource_id,
+    })
+    @ng.save( @client )
+end
+
+Given /^some NamedTransactionGroup with some NamedTransaction$/ do
+    @ntg = BigDoor::NamedTransactionGroup.new({ 
+        'pub_title'             => 'Test Transaction Group',
+        'pub_description'       => 'test description',
+        'end_user_title'        => 'end user title',
+        'end_user_description'  => 'end user description',
+        'end_user_cap'          => '-1',
+        'end_user_cap_interval' => '-1',
+    })
+    @ntg.save( @client )
+
+    @nt = BigDoor::NamedTransaction.new({
+        'pub_title'            => 'Test Transaction',
+        'pub_description'      => 'test description',
+        'end_user_title'       => 'end user title',
+        'end_user_description' => 'end user description',
+        'currency_id'          => @currency.resource_id,
+        'amount'               => '50',
+        'default_amount'       => '50',
+    })
+    @nt.save( @client )
+
+    @ntg.associate_with( @nt, @client, 1 )
+end
+
+Given /^some NamedTransactionGroup with some NamedTransaction with Good$/ do
+    @ntg = BigDoor::NamedTransactionGroup.new({ 
+        'pub_title'             => 'Test Transaction Group',
+        'pub_description'       => 'test description',
+        'end_user_title'        => 'end user title',
+        'end_user_description'  => 'end user description',
+        'end_user_cap'          => '-1',
+        'end_user_cap_interval' => '-1',
+    })
+    @ntg.save( @client )
+
+    @ntwg = BigDoor::NamedTransaction.new({
+        'pub_title'            => 'Test Transaction',
+        'pub_description'      => 'test description',
+        'end_user_title'       => 'end user title',
+        'end_user_description' => 'end user description',
+        'named_good'           => @ng.resource_id,
+        'currency_id'          => @currency.resource_id,
+        'amount'               => '150',
+        'default_amount'       => '150',
+    })
+    @ntwg.save( @client )
+
+    @ntg.associate_with( @ntwg, @client, 1 )
 end
 
 Given /^freshly created "([^"]*)" object with "([^"]*)" name$/ do |arg1, arg2|
@@ -123,6 +243,26 @@ Given /^freshly created "([^"]*)" object with "([^"]*)" name$/ do |arg1, arg2|
         'end_user_login' => @username
     }) 
     @object.save( @client )
+end
+
+When /^I excute NamedTransactionGroup$/ do
+    @ntg.execute( @username, { 'verbosity' => '6'}, @client )
+end
+
+When /^I create and save a new "EndUser" object with "random" name$/ do
+    @username = (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
+    @object = BigDoor::EndUser.new({
+        'end_user_login' => @username
+    }) 
+    @object.save( @client )
+end
+
+When /^I assign Award to EndUser$/ do
+    award = BigDoor::Award.new({ 
+        'end_user_login' => @username,
+        'named_award_id' => @na.resource_id
+    })
+    award.save( @client )
 end
 
 
@@ -139,6 +279,9 @@ Then /^I should get list of all "(\d+)" "(\w+)" objects$/ do |number, class_name
     @list_all.should have(number.to_i).items
     if number.to_i > 0
         @list_all[0].should be_a_instance_of( eval(sprintf "BigDoor::%s", class_name) )
+        unless class_name == 'CurrencyBalance'
+            @list_all[0].load( @client )
+        end
     end
 end
 
@@ -158,6 +301,16 @@ Then /^object should has guid defined$/ do
     @object.guid.to_s.should match(/[a-f\d]+/)
 end
 
+Then /^I should see Leaderboard$/ do
+    lb = BigDoor::Leaderboard.new()
+    lb.execute({ 
+        'format' => 'json', 
+        'verbosity' => '9', 
+        'type' => 'currency', 
+        'filter_value' => @currency.resource_id }, 
+        @client )
+
+end
 Then /^I should be able to remove object$/ do
     @object.should respond_to(:delete)
     @object.delete( @client )
