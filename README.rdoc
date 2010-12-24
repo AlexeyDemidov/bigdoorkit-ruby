@@ -4,23 +4,95 @@
 
 == DESCRIPTION:
 
-* Ruby client library for the BigDoor API
+* Client library for the BigDoor REST API
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+This package provides both low-level procedural (BigDoor::Client) and object-oriented
+(BigDoor::Resource object hierarchy) interfaces to BigDoor REST API.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  client = BigDoor::Client.new( APP_KEY, APP_SECRET )
+  currency = BigDoor::Currency.new({
+        'pub_title'            => 'Coins',
+        'pub_description'      => 'an example of the Purchase currency type',
+        'end_user_title'       => 'Coins',
+        'end_user_description' => 'can only be purchased',
+        'currency_type_id'     => '1',
+        'currency_type_title'  => 'Purchase',
+        'exchange_rate'        => 900.00,
+        'relative_weight'      => 2,
+    })
+
+  currency.save( client )
+
+  nlc = BigDoor::NamedLevelCollection.new({
+        'pub_title'            => 'Test Named Level Collection',
+        'pub_description'      => 'test description',
+        'end_user_title'       => 'test user title',
+        'end_user_description' => 'test user description',
+        'currency_id'          =>  currency.resource_id,
+    })
+
+  nlc.save( client )
+
+  nl = BigDoor::NamedLevel.new({
+        'pub_title'                 => 'Named Level pub title',
+        'pub_description'           => 'Named Level pub description',
+        'end_user_title'            => 'Named Level end user title',
+        'end_user_description'      => 'Named Level end user description',
+        'relative_weight'           => 1,
+        'threshold'                 => 10,
+        'named_level_collection_id' => nlc.resource_id,
+  })
+  nl.save( client )
+
+  ntg = BigDoor::NamedTransactionGroup.new({
+        'pub_title'             => 'Test Transaction Group',
+        'pub_description'       => 'test description',
+        'end_user_title'        => 'end user title',
+        'end_user_description'  => 'end user description',
+        'end_user_cap'          => '-1',
+        'end_user_cap_interval' => '-1',
+    })
+  ntg.save( client )
+
+  nt = BigDoor::NamedTransaction.new({
+        'pub_title'            => 'Test Transaction',
+        'pub_description'      => 'test description',
+        'end_user_title'       => 'end user title',
+        'end_user_description' => 'end user description',
+        'currency_id'          => currency.resource_id,
+        'amount'               => '50',
+        'default_amount'       => '50',
+    })
+  nt.save( client )
+
+  ntg.associate_with( nt, client, 1 )
+
+  end_user = BigDoor::EndUser.new({
+        'end_user_login' => username
+    })
+  end_user.save( client )
+
+  ntg.execute( username, { 'good_receiver' => username }, client )
+
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* rest-client
+* uuidtools
+* addressable
+* json
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+The <code>bigdoorkit</code> is distributed as a RubyGem and is available immediately after installation.
+
+  gem install bigdoorkit
+
+Alternately, download the gem and install manually.
 
 == LICENSE:
 
