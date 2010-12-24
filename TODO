@@ -24,6 +24,7 @@ Test
         resource_with_parent
         named_transaction_group
         leaderboard
+    test for failure    
 
 Implement      
 
@@ -34,3 +35,6 @@ Documentation
   fill generated templates
 
 Packaging
+  sign gem
+  gem push 
+  gem owner
