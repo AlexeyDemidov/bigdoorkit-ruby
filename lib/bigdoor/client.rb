@@ -6,11 +6,14 @@ require 'uuidtools'
 
 module BigDoor
     #
-    # This module provides low-level interface to BigDoor public REST API
+    # This module provides interface to BigDoor public REST API
     #
     DEFAULT_APP_HOST = 'http://api.bigdoor.com'
 
     class Client
+        ##
+        # This class provides low-level interface to BigDoor public REST API
+        #
         attr_accessor :app_key
         attr_accessor :app_secret
         attr_accessor :app_host
