@@ -38,4 +38,4 @@ Feature: url API endpoint
         Then I should get a "URL" object
         And object should has resource_id defined
         And I should be able to remove object
-    
+        And Currency should be removed

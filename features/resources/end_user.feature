@@ -1,3 +1,4 @@
+@passing
 Feature: end_user API endpoint
 
     In order to operate with end users objects
@@ -45,6 +46,8 @@ Feature: end_user API endpoint
         Then I should get list of all "1" "CurrencyBalance" objects
         And I should see Leaderboard
         And "EndUser" object should be removed
+        And "NamedTransactionGroup" should be removed
+        And "NamedLevelCollection" should be removed
         And Currency should be removed
     
     @remote @passing
@@ -58,6 +61,8 @@ Feature: end_user API endpoint
         And I call it to list all "Level" objects from "EndUser"
         Then I should get list of all "1" "Level" objects
         And "EndUser" object should be removed
+        And "NamedTransactionGroup" should be removed
+        And "NamedLevelCollection" should be removed
         And Currency should be removed
     
     @remote  @passing
@@ -69,8 +74,9 @@ Feature: end_user API endpoint
         And I call it to list all "Award" objects from "EndUser"
         Then I should get list of all "1" "Award" objects
         And "EndUser" object should be removed
+        And "NamedAwardCollection" should be removed
     
-    @remote @failing
+    @remote @passing
     Scenario: Run Transaction for EndUser with Good
         Given low-level client
         And freshly created "EndUser" object with "random" name
@@ -81,4 +87,6 @@ Feature: end_user API endpoint
         And I call it to list all "Good" objects from "EndUser"
         Then I should get list of all "1" "Good" objects
         And "EndUser" object should be removed
+        And "NamedGoodCollection" should be removed
+        And "NamedTransactionGroup" should be removed
         And Currency should be removed

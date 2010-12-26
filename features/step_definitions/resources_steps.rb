@@ -335,6 +335,21 @@ Then /^"([^"]*)" object should be removed$/ do |arg1|
     @object.delete( @client )
 end
 
+Then /^"NamedAwardCollection" should be removed$/ do
+    @nac.delete( @client )
+end
+
+Then /^"NamedGoodCollection" should be removed$/ do
+    @ngc.delete( @client )
+end
+
+Then /^"NamedLevelCollection" should be removed$/ do
+    @nlc.delete( @client )
+end
+
+Then /^"NamedTransactionGroup" should be removed$/ do
+    @ntg.delete( @client )
+end
 
 Then /^I should be able to assign "Profile" to "EndUser"$/ do
     @profile = BigDoor::Profile.new({

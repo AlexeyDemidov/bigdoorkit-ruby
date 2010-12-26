@@ -38,4 +38,4 @@ Feature: attribute API endpoint
         Then I should get a "Attribute" object
         And object should has resource_id defined
         And I should be able to remove object
-    
+        And Currency should be removed
