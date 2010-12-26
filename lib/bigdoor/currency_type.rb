@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /currency_type BigDoor API end point
     #
     class CurrencyType < Resource
+        ##
+        # Initialize new CurrencyType object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "CurrencyType init with hash = #{hash.inspect}")
             default_values = {

@@ -5,6 +5,10 @@ module BigDoor
     #
     
     class ResourceEndUser < Resource
+        ##
+        # Calculates Resource object API end point from its class name using
+        # parent_end_point and parent_id_attr (possibly overriden in child classes)
+        #
         def end_point
             $log.debug("parent_end_point = #{ResourceEndUser.parent_end_point}")
             $log.debug("parent_id_attr = #{parent_id_attr}")
@@ -19,6 +23,10 @@ module BigDoor
             ep
         end
 
+        ##
+        # Calculates Resource object API end point from its class name using
+        # parent_end_point and parent_id_attr (possibly overriden in child classes)
+        #
         def self.end_point( username )
             # FIXME code duplication
             $log.debug("parent_end_point = #{ResourceEndUser.parent_end_point}")
@@ -32,6 +40,17 @@ module BigDoor
             ep
         end
         
+        ##
+        # Loads all Resource objects by this type
+        #
+        #  @param [String] username
+        #    end_user_login to be used as base API end point
+        #
+        #  @param [BigDoor::Client] client
+        #    Initialized BigDoor::Client object
+        #
+        #  @return [Array] Array of BigDoor::Resource derieved objects
+        #
         def self.all( username, client )
             # FIXME code duplication
             uri = self.end_point( username )
@@ -46,10 +65,18 @@ module BigDoor
             allobj
         end
 
+        ##
+        # Gives default base parent_end_point for object. 
+        # Can be overriden in inherited classes.
+        #
         def self.parent_end_point 
             'end_user'
         end
 
+        ##
+        # Gives default parent_id attribute name for object.
+        # Can be overriden in inherited classes.
+        # 
         def parent_id_attr
             'end_user_login'
         end

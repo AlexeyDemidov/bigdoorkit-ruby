@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /attribute BigDoor API end point
     #
     class Attribute < ResourceWithAssociation
+        ##
+        # Initialize new Attribute object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "Attribute init with hash = #{hash.inspect}")
             default_values = { }

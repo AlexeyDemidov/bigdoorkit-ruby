@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /named_level BigDoor API end point
     #
     class NamedLevel < ResourceWithParent
+        ##
+        # Initialize new NamedLevel object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "NamedLevel init with hash = #{hash.inspect}")
             default_values = {

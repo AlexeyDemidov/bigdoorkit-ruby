@@ -4,10 +4,15 @@ module BigDoor
     # corresponding to /end_user/{id}/award BigDoor API end point
     #
     class Award < ResourceEndUser
+        ##
+        # Initialize new Award object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "Award init with hash = #{hash.inspect}")
             default_values = {
-                'read_only'       => 0,
                 'end_user_login'  => nil,
                 'named_award_id'  => nil,
             }

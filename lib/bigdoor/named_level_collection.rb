@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /named_level_collection BigDoor API end point
     #
     class NamedLevelCollection < Resource
+        ##
+        # Initialize new NamedLevelCollection object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "NamedLevelCollection init with hash = #{hash.inspect}")
             default_values = {

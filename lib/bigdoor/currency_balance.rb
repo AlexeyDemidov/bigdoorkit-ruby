@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /end_user/{id}/currency_balance BigDoor API end point
     #
     class CurrencyBalance < ResourceEndUser
+        ##
+        # Initialize new CurrencyBalance object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "CurrencyBalance init with hash = #{hash.inspect}")
             default_values = {

@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /named_transaction BigDoor API end point
     #
     class NamedTransaction < Resource
+        ##
+        # Initialize new NamedTransaction object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "NamedTransaction init with hash = #{hash.inspect}")
             default_values = { }

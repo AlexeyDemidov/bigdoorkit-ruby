@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /named_award BigDoor API end point
     #
     class NamedAward < ResourceWithParent
+        ##
+        # Initialize new NamedAward object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "NamedAward init with hash = #{hash.inspect}")
             default_values = {

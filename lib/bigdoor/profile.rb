@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /end_user/{id}/profile BigDoor API end point
     #
     class Profile < ResourceEndUser
+        ##
+        # Initialize new Profile object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "Profile init with hash = #{hash.inspect}")
             default_values = {

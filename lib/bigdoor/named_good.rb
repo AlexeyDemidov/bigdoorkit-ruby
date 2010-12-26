@@ -4,6 +4,12 @@ module BigDoor
     # corresponding to /named_good BigDoor API end point
     #
     class NamedGood < ResourceWithParent
+        ##
+        # Initialize new NamedGood object with optional Hash 
+        #
+        # @param [Hash] hash 
+        #   Optional fields to assign to object
+        #
         def initialize( hash = {} ) 
             $log.debug( "NamedGood init with hash = #{hash.inspect}")
             default_values = {
