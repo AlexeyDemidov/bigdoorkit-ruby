@@ -3,7 +3,7 @@ require 'spec_helper'
 module BigDoor 
     describe Attribute do
         before(:each) do
-            @client = BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET )
+            @client = BigDoor::Client.new( TEST_APP_SECRET, TEST_APP_KEY )
         end
         context "Attribute class" do
             it "Should respond to :all" do 

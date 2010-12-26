@@ -3,7 +3,7 @@ require 'spec_helper'
 module BigDoor 
     describe Award do
         before(:each) do
-            @client = BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET )
+            @client = BigDoor::Client.new( TEST_APP_SECRET, TEST_APP_KEY )
         end
         context "fresh Award object" do 
             subject { BigDoor::Award.new  }

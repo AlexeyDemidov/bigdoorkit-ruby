@@ -3,7 +3,7 @@ require 'spec_helper'
 module BigDoor 
     describe Leaderboard do
         before(:each) do
-            @client = BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET )
+            @client = BigDoor::Client.new( TEST_APP_SECRET, TEST_APP_KEY )
         end
         context "fresh Leaderboard object" do 
             subject { BigDoor::Leaderboard.new  }

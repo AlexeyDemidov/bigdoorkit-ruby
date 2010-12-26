@@ -16,6 +16,7 @@ Test
       https://github.com/chrisk/fakeweb
       https://github.com/chrisyoung/netrecorder
       https://github.com/jsmestad/stale_fish
+  ! mock HTTP responses  
     test coverage 
       spec
         end_user
@@ -25,16 +26,17 @@ Test
         named_transaction_group
         leaderboard
     test for failure    
-
-Implement      
-
-   do_request response object (HTTP status etc.)
+  ! tests should clear after themselves
    extract scenario to test resource object
 
+Implement      
+   do_request response object (HTTP status etc.)
+
 Documentation
-  fill generated templates
+ ! describe functions and their parameters
 
 Packaging
+ ! remove debugging
   sign gem
-  gem push 
+ ! gem push 
   gem owner

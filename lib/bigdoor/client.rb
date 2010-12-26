@@ -15,7 +15,18 @@ module BigDoor
         attr_accessor :app_secret
         attr_accessor :app_host
 
-        def initialize( app_key, app_secret, app_host = DEFAULT_APP_HOST )
+        ##
+        # Creates new BigDoor::Client object
+        #
+        # @param app_secret
+        #
+        #   The API secret supplied by BigDoor. (see API Keys http://publisher.bigdoor.com/)
+        #
+        # @param app_key
+        #
+        #   The API key supplied by BigDoor. (see API Keys http://publisher.bigdoor.com/)
+        #
+        def initialize( app_secret, app_key, app_host = DEFAULT_APP_HOST )
             @app_key = app_key
             @app_secret = app_secret
             @app_host = app_host
@@ -23,6 +34,10 @@ module BigDoor
             @base_url = "/api/publisher/#{@app_key}"
         end
 
+        ##
+        #
+        # 
+        #
         def flatten_params( params )
             raise ArgumentError.new('params should be defined') unless params
             result = ''

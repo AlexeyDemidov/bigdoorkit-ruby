@@ -1,6 +1,6 @@
 
 Given /^low\-level client$/ do
-      @client = BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET )
+      @client = BigDoor::Client.new( TEST_APP_SECRET, TEST_APP_KEY )
 end
 
 Given /^new empty "NamedAwardCollection" collection$/ do

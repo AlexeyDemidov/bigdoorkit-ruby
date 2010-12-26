@@ -3,7 +3,7 @@ require 'spec_helper'
 module BigDoor 
     describe Client do
         context "fresh client object" do 
-            subject { BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET )  }
+            subject { BigDoor::Client.new( TEST_APP_SECRET, TEST_APP_KEY )  }
             it { should be }
             it { should be_a_instance_of( BigDoor::Client )}
             it { should respond_to(:app_key).with(0).arguments }
@@ -116,14 +116,14 @@ module BigDoor
 
         end
         describe "fresh client object with app_host set explictly" do
-            subject { BigDoor::Client.new( TEST_APP_KEY, TEST_APP_SECRET, 'http://localhost/') }
+            subject { BigDoor::Client.new( TEST_APP_SECRET, TEST_APP_KEY, 'http://localhost/') }
             it "Should return app_host assigned" do
                     subject.app_host.should == 'http://localhost/'
             end
         end    
 
         context "fresh client object with fake keys" do
-            subject { BigDoor::Client.new( FAKE_APP_KEY , FAKE_APP_SECRET ) }
+            subject { BigDoor::Client.new( FAKE_APP_SECRET , FAKE_APP_KEY ) }
             it { should respond_to(:generate_signature).with(2).arguments }
             it "Should generate matching signature for 2 arguments" do
                 params = { 'time' => 1270503018.33  }
