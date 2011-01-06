@@ -27,7 +27,7 @@ Feature: attribute API endpoint
         And object should has resource_id defined
         And I should be able to remove object
     
-    @remote @wip
+    @remote
     Scenario: create, save and associate a new Attribute with Currency
         Given low-level client
         And some Currency

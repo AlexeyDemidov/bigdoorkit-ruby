@@ -269,6 +269,7 @@ module BigDoor
             
             response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
             if response && !response.empty?
+                $log.debug( sprintf 'undecoded_response = %s', response.inspect )
                 decoded_response = JSON.parse( response )
                 $log.debug( sprintf 'decoded_response = %s', decoded_response.inspect )
                 decoded_response[0]

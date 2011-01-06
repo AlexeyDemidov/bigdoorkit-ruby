@@ -13,8 +13,15 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
 
 == SYNOPSIS:
 
-  client = BigDoor::Client.new( APP_KEY, APP_SECRET )
-  currency = BigDoor::Currency.new({
+    require 'rubygems'
+    require 'bigdoor'
+
+    # see API Keys http://publisher.bigdoor.com/ 
+    APP_KEY    = '28d3da80bf36fad415ab57b3130c6cb6'    
+    APP_SECRET = 'B66F956ED83AE218612CB0FBAC2EF01C' 
+
+    client = BigDoor::Client.new( APP_SECRET, APP_KEY )
+    currency = BigDoor::Currency.new({
         'pub_title'            => 'Coins',
         'pub_description'      => 'an example of the Purchase currency type',
         'end_user_title'       => 'Coins',
@@ -25,9 +32,17 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
         'relative_weight'      => 2,
     })
 
-  currency.save( client )
+    currency.save( client )
 
-  nlc = BigDoor::NamedLevelCollection.new({
+    currency.load( client ) # reload object
+
+    currency.pub_title = 'Bank Notes'
+    currency.save( client ) # update object keeping same ID
+
+    currency_id = currency.resource_id
+    currency.load( client, currency_id) # load object by explictly defined id
+
+    nlc = BigDoor::NamedLevelCollection.new({
         'pub_title'            => 'Test Named Level Collection',
         'pub_description'      => 'test description',
         'end_user_title'       => 'test user title',
@@ -35,9 +50,9 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
         'currency_id'          =>  currency.resource_id,
     })
 
-  nlc.save( client )
+    nlc.save( client )
 
-  nl = BigDoor::NamedLevel.new({
+    nl = BigDoor::NamedLevel.new({
         'pub_title'                 => 'Named Level pub title',
         'pub_description'           => 'Named Level pub description',
         'end_user_title'            => 'Named Level end user title',
@@ -45,10 +60,10 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
         'relative_weight'           => 1,
         'threshold'                 => 10,
         'named_level_collection_id' => nlc.resource_id,
-  })
-  nl.save( client )
+    })
+    nl.save( client )
 
-  ntg = BigDoor::NamedTransactionGroup.new({
+    ntg = BigDoor::NamedTransactionGroup.new({
         'pub_title'             => 'Test Transaction Group',
         'pub_description'       => 'test description',
         'end_user_title'        => 'end user title',
@@ -56,9 +71,9 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
         'end_user_cap'          => '-1',
         'end_user_cap_interval' => '-1',
     })
-  ntg.save( client )
+    ntg.save( client )
 
-  nt = BigDoor::NamedTransaction.new({
+    nt = BigDoor::NamedTransaction.new({
         'pub_title'            => 'Test Transaction',
         'pub_description'      => 'test description',
         'end_user_title'       => 'end user title',
@@ -67,17 +82,26 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
         'amount'               => '50',
         'default_amount'       => '50',
     })
-  nt.save( client )
+    nt.save( client )
 
-  ntg.associate_with( nt, client, 1 )
+    ntg.associate_with( nt, client, 1 )
 
-  end_user = BigDoor::EndUser.new({
+    username = (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
+
+    end_user = BigDoor::EndUser.new({
         'end_user_login' => username
     })
-  end_user.save( client )
+    end_user.save( client )
 
-  ntg.execute( username, { 'good_receiver' => username }, client )
+    ntg.execute( username, { 'good_receiver' => username }, client )
 
+    # cleanup
+    currency.delete( client )
+    ntg.delete( client )
+    nt.delete( client )
+    nl.delete( client )
+    nlc.delete( client )
+    end_user.delete( client )
 
 == REQUIREMENTS:
 
