@@ -280,6 +280,10 @@ When /^load object$/ do
       @object.load( @client )
 end
 
+Then /^I should get list of "(\w+)" objects$/ do |class_name|
+    @list_all.should be_a_instance_of( Array )
+end
+
 Then /^I should get list of all "(\d+)" "(\w+)" objects$/ do |number, class_name|
     @list_all.should be_a_instance_of( Array )
     @list_all.should have(number.to_i).items

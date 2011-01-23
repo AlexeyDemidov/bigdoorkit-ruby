@@ -9,10 +9,9 @@ module BigDoor
             it "Should respond to :all" do 
                 BigDoor::EndUser.should respond_to(:all).with(1).arguments
             end
-            it "Should load 0 end_users at the beginning" do
+            it "Should load Array of end_users at the beginning" do
                 currency_types = BigDoor::EndUser.all( @client )
                 currency_types.should be_a_instance_of( Array )
-                currency_types.should be_empty
             end
         end
         context "fresh EndUser object" do 

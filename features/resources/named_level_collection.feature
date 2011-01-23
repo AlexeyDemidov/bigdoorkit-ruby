@@ -9,7 +9,7 @@ Feature: named_level_collection API endpoint
     Scenario: get list of all NamedLevelCollections
         Given low-level client
         When I call it to list all "NamedLevelCollection" objects
-        Then I should get list of all "0" "NamedLevelCollection" objects
+        Then I should get list of "NamedLevelCollection" objects
 
     @local
     Scenario: create a new NamedLevelCollection

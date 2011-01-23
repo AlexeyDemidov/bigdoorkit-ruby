@@ -9,7 +9,7 @@ Feature: end_user API endpoint
     Scenario: get list of all EndUser
         Given low-level client
         When I call it to list all "EndUser" objects
-        Then I should get list of all "0" "EndUser" objects
+        Then I should get list of "EndUser" objects
 
     @local @passing
     Scenario: create a new EndUser

@@ -9,7 +9,7 @@ Feature: attribute API endpoint
     Scenario: get list of all Attribute
         Given low-level client
         When I call it to list all "Attribute" objects
-        Then I should get list of all "6" "Attribute" objects
+        Then I should get list of "Attribute" objects
 
     @local 
     Scenario: create a new Attribute

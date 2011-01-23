@@ -9,7 +9,7 @@ Feature: url API endpoint
     Scenario: get list of all URL
         Given low-level client
         When I call it to list all "URL" objects
-        Then I should get list of all "0" "URL" objects
+        Then I should get list of "URL" objects
 
     @local
     Scenario: create a new URL

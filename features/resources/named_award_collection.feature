@@ -9,7 +9,7 @@ Feature: named_award_collection API endpoint
     Scenario: get list of all NamedAwardCollections
         Given low-level client
         When I call it to list all "NamedAwardCollection" objects
-        Then I should get list of all "0" "NamedAwardCollection" objects
+        Then I should get list of "NamedAwardCollection" objects
 
     @local
     Scenario: create a new NamedAwardCollection

@@ -9,4 +9,4 @@ Feature: currency_type API endpoint shows list of currency types
     Scenario: 
         Given low-level client
         When I call it to list all "CurrencyType" objects
-        Then I should get list of all "9" "CurrencyType" objects
+        Then I should get list of "CurrencyType" objects

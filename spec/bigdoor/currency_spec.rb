@@ -9,10 +9,9 @@ module BigDoor
             it "Should respond to :all" do 
                 BigDoor::Currency.should respond_to(:all).with(1).arguments
             end
-            it "Should load 0 currencies at the beginning" do
+            it "Should load Array of Currencies at the beginning" do
                 currencies = BigDoor::Currency.all( @client )
                 currencies.should be_a_instance_of( Array )
-                currencies.should be_empty
             end
         end
         context "fresh Currency object" do 
@@ -67,17 +66,15 @@ module BigDoor
                 currencies.should_not be_empty
 
                 currencies[0].should be_a_instance_of( Currency )
-                currencies[0].resource_id.to_s.should == save_resource_id
 
                 should respond_to(:delete).with(1).arguments
                 subject.delete( @client )
             end
             it { should respond_to(:load).with(2).arguments }
             it { should respond_to(:delete).with(2).arguments }
-            it "Should load 0 currencies at the end" do
+            it "Should load Array of Currencies at the end" do
                 currencies = BigDoor::Currency.all( @client )
                 currencies.should be_a_instance_of( Array )
-                currencies.should be_empty
             end
         end
     end

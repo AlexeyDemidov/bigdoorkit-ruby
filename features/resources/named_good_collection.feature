@@ -9,7 +9,7 @@ Feature: named_good_collection API endpoint
     Scenario: get list of all NamedGoodCollections
         Given low-level client
         When I call it to list all "NamedGoodCollection" objects
-        Then I should get list of all "0" "NamedGoodCollection" objects
+        Then I should get list of "NamedGoodCollection" objects
 
     @local
     Scenario: create a new NamedGoodCollection
