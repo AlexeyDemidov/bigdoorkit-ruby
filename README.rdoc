@@ -112,11 +112,27 @@ This package provides both low-level procedural (BigDoor::Client) and object-ori
 
 == INSTALL:
 
-The <code>bigdoorkit</code> is distributed as a RubyGem and is available immediately after installation.
+The <code>bigdoorkit</code> is distributed as a RubyGem and is available
+immediately after installation.
 
   gem install bigdoorkit
 
 Alternately, download the gem and install manually.
+
+
+== TESTS:
+
+Tests requre rspec 2.x and cucumber gems installed. To access BigDoor API you
+need to get API keys ( see http://publisher.bigdoor.com/ site) - place them
+into appropriate environment variable in you shell - BIGDOOR_API_KEY and
+BIGDOOR_API_SECRET. 
+
+WARNING: Test suite was initially designed to be run against empty account
+without any objects created (except predefined Attributes and CurrencyTypes)
+and there is no checks for existing objects. While tests shouldn't touch or
+remove any objects other than those they have created, there is still
+possibility of bugs, so be careful running these tests against account with
+live economy.
 
 == LICENSE:
 
