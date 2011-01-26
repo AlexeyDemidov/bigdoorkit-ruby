@@ -4,12 +4,13 @@
 
 == DESCRIPTION:
 
-* Client library for the BigDoor REST API
+Client library for the BigDoor REST API (http://bigdoor.com). This package
+provides both low-level procedural (BigDoor::Client) and object-oriented
+(BigDoor::Resource object hierarchy) interfaces to BigDoor REST API.
 
 == FEATURES/PROBLEMS:
 
-This package provides both low-level procedural (BigDoor::Client) and object-oriented
-(BigDoor::Resource object hierarchy) interfaces to BigDoor REST API.
+See documentation for BigDoor REST API at http://publisher.bigdoor.com/
 
 == SYNOPSIS:
 

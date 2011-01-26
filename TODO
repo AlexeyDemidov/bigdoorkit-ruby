@@ -34,7 +34,6 @@ Implement
 Documentation
 
 Packaging
- ! remove debugging
   sign gem
  ! gem push 
   gem owner

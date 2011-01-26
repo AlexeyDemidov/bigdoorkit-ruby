@@ -7,7 +7,7 @@ rescue LoadError
 end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
-require 'bigdoor'
+require 'big_door'
 
 FAKE_APP_KEY    = '28d3da80bf36fad415ab57b3130c6cb6'
 FAKE_APP_SECRET = 'B66F956ED83AE218612CB0FBAC2EF01C'

@@ -1,8 +1,9 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
+
 
 require 'rubygems'
-#require 'bigdoor'
-require './lib/bigdoor.rb'
+require 'big_door'
+require './lib/big_door.rb'
 
 # see API Keys http://publisher.bigdoor.com/
 APP_KEY    = ENV['BIGDOOR_API_KEY']    
