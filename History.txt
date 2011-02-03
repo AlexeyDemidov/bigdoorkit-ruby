@@ -1,3 +1,12 @@
+=== 0.0.2 2011-02-03
+
+* 1 minor enhancement:
+  * added HTTP calls timing to debug output
+
+* 3 minor bugfixes
+  Leaderboard#execute, NamedTransactionGroup#execute and
+  ResourceWithAssociation were all missing returning result
+
 === 0.0.1 2010-12-14
 
 * 1 major enhancement:

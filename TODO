@@ -35,5 +35,4 @@ Documentation
 
 Packaging
   sign gem
- ! gem push 
   gem owner

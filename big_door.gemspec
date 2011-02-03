@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{big_door}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex L. Demidov"]
-  s.date = %q{2011-01-26}
+  s.date = %q{2011-02-03}
   s.default_executable = %q{example.rb}
   s.description = %q{Client library for the BigDoor REST API (http://bigdoor.com). This package
 provides both low-level procedural (BigDoor::Client) and object-oriented
