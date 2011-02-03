@@ -32,6 +32,7 @@ module BigDoor
             $log.debug( sprintf 'uri = %s', uri )
             result = client.post( uri , { 'format' => 'json'}, payload )
             $log.debug(sprintf 'result = %s', result.inspect );
+            result
         end
     end
 end

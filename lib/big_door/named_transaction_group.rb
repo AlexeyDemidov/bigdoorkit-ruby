@@ -50,6 +50,7 @@ module BigDoor
             payload['verbosity'] = 9 unless payload['verbosity']
             result = client.post( uri , { 'format' => 'json'}, payload )
             $log.debug(sprintf 'result = %s', result.inspect );
+            result
         end
 
         ##
