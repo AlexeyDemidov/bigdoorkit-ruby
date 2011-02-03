@@ -36,6 +36,7 @@ module BigDoor
             $log.debug( sprintf 'execute uri = %s', uri )
             result = client.get( uri , params )
             $log.debug(sprintf 'result = %s', result.inspect );
+            result
         end
     end
 end
