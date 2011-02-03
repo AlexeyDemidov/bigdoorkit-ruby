@@ -3,6 +3,7 @@ require 'addressable/uri'
 require 'json'
 require 'digest/sha1'
 require 'uuidtools'
+require 'benchmark'
 
 module BigDoor
     #
@@ -267,7 +268,11 @@ module BigDoor
             $log.debug( sprintf 'method url = %s %s', method, url )
             $log.debug( sprintf 'payload = %s', payload.inspect )
             
-            response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
+            response = nil
+            ms = Benchmark.measure {
+                response = RestClient::Request.execute(:method => method, :url => url.to_s, :payload => payload, :headers => headers, :raw_response => false)
+            }
+            $log.debug("delay #{'%.1f' % (ms.real * 1000)} ms")
             if response && !response.empty?
                 $log.debug( sprintf 'undecoded_response = %s', response.inspect )
                 decoded_response = JSON.parse( response )
