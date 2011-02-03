@@ -5,3 +5,4 @@ coverage
 .source_index
 log.txt
 pkg
+debug.log
