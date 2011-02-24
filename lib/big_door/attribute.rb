@@ -17,5 +17,15 @@ module BigDoor
             $log.debug( "Attribute default_values = #{default_values.inspect}")
             super( default_values )
         end
+        def self.search( friendly_id, client ) 
+          result = client.get( end_point , { 'format' => 'json', 'attribute_friendly_id' => friendly_id } )
+          $log.debug(sprintf 'result = %s', result.inspect );
+          found_objs = result.map{ |obj|
+            $log.debug("obj = #{obj.inspect}")
+            self.new(obj) 
+          }
+          $log.debug( "found_objs = #{found_objs.inspect}")
+          found_objs
+        end     
     end
 end
