@@ -112,6 +112,8 @@ module BigDoor
             $log.debug('update instance from response')
             response.each do |key, value|
                 key = 'resource_id' if key == 'id' 
+                value = value.to_s
+                value.gsub!(/'/, "\\\\'")
                 self.instance_eval("self.#{key} = \'#{value}\'")
                 $log.debug(sprintf "%s = %s", key, self.instance_eval("self.#{key}") )
             end
