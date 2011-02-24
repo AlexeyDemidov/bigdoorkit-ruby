@@ -5,6 +5,7 @@ setup environment
       heckle
 
 check for limit 10 items returned by call      
+dont modify params
 
 Test
     add check for token generation
