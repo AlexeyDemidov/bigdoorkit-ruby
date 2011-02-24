@@ -274,9 +274,9 @@ module BigDoor
             }
             $log.debug("delay #{'%.1f' % (ms.real * 1000)} ms")
             if response && !response.empty?
-                $log.debug( sprintf 'undecoded_response = %s', response.inspect )
+                # $log.debug( sprintf 'undecoded_response = %s', response.inspect )
                 decoded_response = JSON.parse( response )
-                $log.debug( sprintf 'decoded_response = %s', decoded_response.inspect )
+                $log.debug( sprintf 'decoded_response  = %s', JSON.pretty_generate(decoded_response) )
                 decoded_response[0]
             end
         rescue RestClient::Exception => ex
