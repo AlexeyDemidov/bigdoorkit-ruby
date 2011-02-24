@@ -9,6 +9,9 @@ module BigDoor
             it "Should respond to :all" do 
                 BigDoor::Attribute.should respond_to(:all).with(1).arguments
             end
+            it "Should respond to :search" do 
+                BigDoor::Attribute.should respond_to(:search).with(2).arguments
+            end
             it "Should load Array of Attributes at the beginning" do
                 currency_types = BigDoor::Attribute.all( @client )
                 currency_types.should be_a_instance_of( Array )
