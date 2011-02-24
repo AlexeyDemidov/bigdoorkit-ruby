@@ -1,3 +1,11 @@
+=== 0.0.3 2011-02-24
+* 2 minor enhanchement:
+  * add Attribute#search to lookup by attribute_friendly_id
+  * pretty print result object in debug output
+
+* 1 minor bugfixe
+  * escape single quote in parsed json data
+
 === 0.0.2 2011-02-03
 
 * 1 minor enhancement:
