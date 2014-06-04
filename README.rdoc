@@ -2,6 +2,8 @@
 
 * http://bitbucket.org/AlexeyDemidov/bigdoorkit-ruby/
 
+{<img src="https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby.png" />}[https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby]
+
 == DESCRIPTION:
 
 Client library for the BigDoor REST API (http://bigdoor.com). This package
