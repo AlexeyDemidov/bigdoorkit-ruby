@@ -2,7 +2,7 @@
 
 * http://bitbucket.org/AlexeyDemidov/bigdoorkit-ruby/
 
-{<img src="https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby.png" />}[https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby]
+{<img src="https://badge.fury.io/rb/big_door.svg" alt="Gem Version" />}[http://badge.fury.io/rb/big_door] {<img src="https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby.png" />}[https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby]
 
 == DESCRIPTION:
 
