@@ -1,8 +1,8 @@
 = bigdoorkit
 
-* http://bitbucket.org/AlexeyDemidov/bigdoorkit-ruby/
+{rdoc-image:https://badge.fury.io/rb/big_door.svg}[http://badge.fury.io/rb/big_door] {rdoc-image:https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby.png}[https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby]
 
-{<img src="https://badge.fury.io/rb/big_door.svg" alt="Gem Version" />}[http://badge.fury.io/rb/big_door] {<img src="https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby.png" />}[https://codeclimate.com/github/AlexeyDemidov/bigdoorkit-ruby]
+* https://github.com/AlexeyDemidov/bigdoorkit-ruby
 
 == DESCRIPTION:
 
@@ -12,7 +12,7 @@ provides both low-level procedural (BigDoor::Client) and object-oriented
 
 == FEATURES/PROBLEMS:
 
-See documentation for BigDoor REST API at http://publisher.bigdoor.com/
+See documentation for BigDoor REST API at http://publisher.bigdoor.com
 
 == SYNOPSIS:
 
